@@ -1,0 +1,18 @@
+# ─── ClassM8 Python Requirements ─────────────────────────────────────────────
+# Used for offline scripts (embedding pre-computation, NCERT PDF parsing, etc.)
+# Install: pip install -r requirements.txt
+
+# ── NCERT PDF Processing ──────────────────────────────────────────────────────
+pdfplumber==0.11.4          # Extract text from NCERT PDF textbooks
+pypdf2==3.0.1               # Backup PDF reader
+
+# ── Embedding Pre-computation (offline, one-time script) ─────────────────────
+sentence-transformers==3.3.1 # all-MiniLM-L6-v2 for chunk embeddings
+numpy==2.1.3                 # Vector math & similarity scoring
+torch==2.5.1                 # Backend for sentence-transformers (CPU-only)
+
+# ── Data Utilities ────────────────────────────────────────────────────────────
+tqdm==4.67.1                 # Progress bars for batch embedding jobs
+
+# ── Development & Tooling ────────────────────────────────────────────────────
+python-dotenv==1.0.1         # Load .env for any API keys (future use)
