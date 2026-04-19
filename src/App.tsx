@@ -6,10 +6,10 @@ import { InputBar } from './components/InputBar';
 import { useChat } from './hooks/useChat';
 
 const SUGGESTIONS = [
-  "What is a redox reaction?",
-  "What is the pH scale?",
-  "Explain Snell's Law",
-  "How are metals extracted?",
+  { text: "What is a redox reaction?", chapter: 1 },
+  { text: "What is the pH scale?", chapter: 2 },
+  { text: "Explain Snell's Law", chapter: 10 },
+  { text: "How are metals extracted?", chapter: 3 },
 ];
 
 export default function App() {
@@ -24,12 +24,19 @@ export default function App() {
 
   const showWelcome = messages.length === 0;
 
+  const visibleSuggestions = activeChapter
+    ? SUGGESTIONS.filter(s => s.chapter === activeChapter)
+    : SUGGESTIONS;
+
   return (
     <div className="flex h-screen overflow-hidden bg-paper bg-grid-pattern">
       <Sidebar
         activeChapter={activeChapter}
         onSelectChapter={setActiveChapter}
-        onClearChat={clearChat}
+        onClearChat={() => {
+          clearChat();
+          setActiveChapter(null);
+        }}
       />
 
       <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
@@ -47,14 +54,14 @@ export default function App() {
                 <div className="space-y-4">
                   <p className="text-xs uppercase tracking-widest font-bold text-ash">Sample Inquiries</p>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {SUGGESTIONS.map((s, i) => (
+                    {visibleSuggestions.map((s, i) => (
                       <button
                         key={i}
-                        onClick={() => sendMessage(s)}
+                        onClick={() => sendMessage(s.text)}
                         className="text-left px-5 py-4 border border-slate-200 bg-white rounded shadow-sm text-ink font-medium hover:border-ink hover:shadow-md transition-all group"
                       >
                         <span className="text-ash group-hover:text-ink mr-2 transition-colors">→</span>
-                        {s}
+                        {s.text}
                       </button>
                     ))}
                   </div>

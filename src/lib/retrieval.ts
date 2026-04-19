@@ -60,11 +60,21 @@ export function retrieve(
     ? NCERT_CHUNKS.filter((c) => c.chapterNum === chapterFilter)
     : NCERT_CHUNKS;
 
-  return pool
+  let results = pool
     .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk) }))
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, topK);
+    
+  if (results.length === 0 && chapterFilter !== null) {
+    results = NCERT_CHUNKS
+      .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk) }))
+      .filter((r) => r.score > 0)
+      .sort((a, b) => b.score - a.score)
+      .slice(0, topK);
+  }
+
+  return results;
 }
 
 /** Compose a readable answer from the top retrieved chunk */
