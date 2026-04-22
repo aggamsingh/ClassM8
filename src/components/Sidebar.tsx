@@ -4,9 +4,14 @@ interface SidebarProps {
   activeChapter: number | null;
   onSelectChapter: (n: number | null) => void;
   onClearChat: () => void;
+  onUploadPdf?: (file: File) => void;
 }
 
-export function Sidebar({ activeChapter, onSelectChapter, onClearChat }: SidebarProps) {
+import { useRef } from 'react';
+
+export function Sidebar({ activeChapter, onSelectChapter, onClearChat, onUploadPdf }: SidebarProps) {
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  
   return (
     <aside className="w-64 shrink-0 flex flex-col h-screen bg-paper-alt border-r border-slate-200">
       {/* Logo Area */}
@@ -60,8 +65,25 @@ export function Sidebar({ activeChapter, onSelectChapter, onClearChat }: Sidebar
         })}
       </nav>
 
-      {/* Footer */}
-      <div className="p-4 border-t border-slate-200 bg-paper-alt">
+      {/* Upload PDF */}
+      <div className="px-4 py-3 border-t border-slate-200 bg-paper-alt">
+        <input 
+          type="file" 
+          accept="application/pdf" 
+          className="hidden" 
+          ref={fileInputRef}
+          onChange={(e) => {
+            const file = e.target.files?.[0];
+            if (file && onUploadPdf) onUploadPdf(file);
+            e.target.value = '';
+          }}
+        />
+        <button
+          onClick={() => fileInputRef.current?.click()}
+          className="w-full py-2 mb-2 text-xs font-medium text-white bg-ink hover:bg-slate-800 border border-ink rounded transition-colors"
+        >
+          Upload PDF
+        </button>
         <button
           onClick={onClearChat}
           className="w-full py-2 text-xs text-graphite hover:text-ink border border-slate-300 rounded transition-colors bg-white hover:bg-slate-50"

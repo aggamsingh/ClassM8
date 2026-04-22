@@ -1,5 +1,24 @@
 import { NCERT_CHUNKS, type NcertChunk } from './ncertData';
 
+export let CUSTOM_CHUNKS: NcertChunk[] = [];
+
+export function setCustomChunks(chunks: NcertChunk[]) {
+  CUSTOM_CHUNKS = chunks;
+}
+
+export function cosineSimilarity(vecA: number[], vecB: number[]): number {
+  let dotProduct = 0;
+  let normA = 0;
+  let normB = 0;
+  for (let i = 0; i < vecA.length; i++) {
+    dotProduct += vecA[i] * vecB[i];
+    normA += vecA[i] * vecA[i];
+    normB += vecB[i] * vecB[i];
+  }
+  if (normA === 0 || normB === 0) return 0;
+  return dotProduct / (Math.sqrt(normA) * Math.sqrt(normB));
+}
+
 const STOPWORDS = new Set([
   'a','an','the','is','it','in','of','to','and','or','for','on','with',
   'that','this','are','was','were','be','been','being','have','has','had',
@@ -22,7 +41,11 @@ function buildTermFreq(tokens: string[]): Map<string, number> {
   return freq;
 }
 
-function scoreChunk(queryTokens: string[], chunk: NcertChunk): number {
+function scoreChunk(queryTokens: string[], chunk: NcertChunk, queryEmbedding?: number[] | null): number {
+  if (queryEmbedding && chunk.embedding) {
+    return cosineSimilarity(queryEmbedding, chunk.embedding);
+  }
+
   const chunkText = `${chunk.text} ${chunk.section} ${chunk.chapter}`;
   const chunkTokens = tokenize(chunkText);
   const tf = buildTermFreq(chunkTokens);
@@ -52,23 +75,26 @@ export function retrieve(
   query: string,
   chapterFilter: number | null = null,
   topK = 3,
+  queryEmbedding: number[] | null = null
 ): RetrievalResult[] {
   const queryTokens = tokenize(query);
-  if (queryTokens.length === 0) return [];
+  if (queryTokens.length === 0 && !queryEmbedding) return [];
+
+  const activePool = CUSTOM_CHUNKS.length > 0 ? CUSTOM_CHUNKS : NCERT_CHUNKS;
 
   const pool = chapterFilter
-    ? NCERT_CHUNKS.filter((c) => c.chapterNum === chapterFilter)
-    : NCERT_CHUNKS;
+    ? activePool.filter((c) => c.chapterNum === chapterFilter)
+    : activePool;
 
   let results = pool
-    .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk) }))
+    .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
     .filter((r) => r.score > 0)
     .sort((a, b) => b.score - a.score)
     .slice(0, topK);
     
   if (results.length === 0 && chapterFilter !== null) {
-    results = NCERT_CHUNKS
-      .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk) }))
+    results = activePool
+      .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
       .filter((r) => r.score > 0)
       .sort((a, b) => b.score - a.score)
       .slice(0, topK);

@@ -4,6 +4,7 @@ export interface NcertChunk {
   chapterNum: number;
   section: string;
   text: string;
+  embedding?: number[];
 }
 
 export const CHAPTERS = [

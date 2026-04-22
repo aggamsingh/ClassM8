@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { retrieve, buildAnswer, type RetrievalResult } from '../lib/retrieval';
+import { retrieve, buildAnswer, type RetrievalResult, CUSTOM_CHUNKS } from '../lib/retrieval';
 import type { Message, Source } from '../lib/types';
+import { getEmbedding } from '../lib/workerClient';
 
 const STREAM_SPEED_MS = 12; // ms per character
 
@@ -27,7 +28,16 @@ export function useChat(chapterFilter: number | null) {
       // Simulate retrieval delay (feels more "AI-like")
       await delay(600 + Math.random() * 400);
 
-      const results: RetrievalResult[] = retrieve(query, chapterFilter);
+      let queryEmbedding: number[] | null = null;
+      if (CUSTOM_CHUNKS.length > 0) {
+        try {
+          queryEmbedding = await getEmbedding(query);
+        } catch (e) {
+          console.error("Failed to generate query embedding:", e);
+        }
+      }
+
+      const results: RetrievalResult[] = retrieve(query, chapterFilter, 3, queryEmbedding);
       const fullAnswer = buildAnswer(query, results);
       const sources: Source[] = results.map((r) => ({
         chapter: r.chunk.chapter,
