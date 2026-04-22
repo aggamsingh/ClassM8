@@ -25,6 +25,8 @@ const STOPWORDS = new Set([
   'do','does','did','will','would','could','should','may','might','shall',
   'at','by','from','as','if','its','not','but','so','yet','nor',
   'what','which','who','how','when','where','why','all','any','each',
+  'our','we','you','your','they','their','them','he','his','she','her',
+  'my','mine','can','about','out','up','down','over','under','into'
 ]);
 
 function tokenize(text: string): string[] {
@@ -86,7 +88,7 @@ export function retrieve(
     ? activePool.filter((c) => c.chapterNum === chapterFilter)
     : activePool;
 
-  const threshold = queryEmbedding ? 0.35 : 0;
+  const threshold = queryEmbedding ? 0.35 : 0.05;
 
   let results = pool
     .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
