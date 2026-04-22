@@ -146,3 +146,20 @@ ClassM8/
 - **Node.js** 18 or higher
 - **Browser:** Any modern browser (no WebGPU needed for prototype)
 - **Storage:** ~200 MB for `node_modules`, ~0 MB runtime overhead
+
+---
+
+## 🌟 New in `feature/pdf-semantic-rag` Branch
+
+We've extended the prototype with **Local PDF RAG** capabilities! If you're on the `feature/pdf-semantic-rag` branch, you can test these dynamic features:
+
+- **PDF Upload & Parsing:** Upload your own NCERT chapters (or any PDF). The app uses `pdfjs-dist` to parse and chunk the text entirely in your browser.
+- **Local Semantic Search:** Powered by `Transformers.js` and the `all-MiniLM-L6-v2` model running in a background Web Worker. It generates embeddings locally and uses Cosine Similarity to find conceptually relevant paragraphs, moving beyond exact keyword matches.
+- **Real-time Processing UI:** A beautiful overlay provides live feedback during text extraction and AI model execution.
+
+**To try it out:**
+1. Switch to the branch: `git checkout feature/pdf-semantic-rag`
+2. Install new dependencies: `npm install`
+3. Run the dev server: `npm run dev`
+4. Click **Upload PDF** in the sidebar. 
+*(Note: An active internet connection is required on the very first run to download the ~22MB AI model. Afterwards, it is 100% offline).*
