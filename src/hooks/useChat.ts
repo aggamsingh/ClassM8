@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
 import { retrieve, buildAnswer, type RetrievalResult, CUSTOM_CHUNKS } from '../lib/retrieval';
 import type { Message, Source } from '../lib/types';
-import { getEmbedding } from '../lib/workerClient';
+import { getEmbedding, generateAnswer } from '../lib/workerClient';
 
 const STREAM_SPEED_MS = 12; // ms per character
 
@@ -60,17 +60,58 @@ export function useChat(chapterFilter: number | null) {
         },
       ]);
 
-      // Stream character by character
-      for (let i = 0; i <= fullAnswer.length; i++) {
-        if (abortRef.current) break;
-        setMessages((prev) =>
-          prev.map((m) =>
-            m.id === assistantId
-              ? { ...m, content: fullAnswer.slice(0, i), streaming: i < fullAnswer.length }
-              : m,
-          ),
-        );
-        if (i < fullAnswer.length) await delay(STREAM_SPEED_MS);
+      if (CUSTOM_CHUNKS.length > 0 && results.length > 0) {
+        let textBuffer = "";
+        let displayedText = "";
+        let isGenerationDone = false;
+        
+        // Character-by-character animation loop
+        const animate = async () => {
+          while (!isGenerationDone || displayedText.length < textBuffer.length) {
+            if (abortRef.current) break;
+            if (displayedText.length < textBuffer.length) {
+              displayedText += textBuffer[displayedText.length];
+              setMessages((prev) =>
+                prev.map((m) =>
+                  m.id === assistantId
+                    ? { ...m, content: displayedText, streaming: true }
+                    : m,
+                ),
+              );
+              await delay(STREAM_SPEED_MS);
+            } else {
+              await delay(10); // Wait for more text
+            }
+          }
+        };
+
+        const animationPromise = animate();
+
+        try {
+          await generateAnswer(query, results[0].chunk.text, (chunk, fullText) => {
+            textBuffer = fullText;
+          });
+        } catch (e) {
+          console.error("Text generation failed:", e);
+          textBuffer = fullAnswer; // fallback text
+        }
+        
+        isGenerationDone = true;
+        await animationPromise;
+
+      } else {
+        // Stream character by character (Simulated)
+        for (let i = 0; i <= fullAnswer.length; i++) {
+          if (abortRef.current) break;
+          setMessages((prev) =>
+            prev.map((m) =>
+              m.id === assistantId
+                ? { ...m, content: fullAnswer.slice(0, i), streaming: i < fullAnswer.length }
+                : m,
+            ),
+          );
+          if (i < fullAnswer.length) await delay(STREAM_SPEED_MS);
+        }
       }
 
       // Finalize

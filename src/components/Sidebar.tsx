@@ -5,11 +5,12 @@ interface SidebarProps {
   onSelectChapter: (n: number | null) => void;
   onClearChat: () => void;
   onUploadPdf?: (file: File) => void;
+  uploadedDocumentName: string | null;
 }
 
 import { useRef } from 'react';
 
-export function Sidebar({ activeChapter, onSelectChapter, onClearChat, onUploadPdf }: SidebarProps) {
+export function Sidebar({ activeChapter, onSelectChapter, onClearChat, onUploadPdf, uploadedDocumentName }: SidebarProps) {
   const fileInputRef = useRef<HTMLInputElement>(null);
   
   return (
@@ -35,34 +36,47 @@ export function Sidebar({ activeChapter, onSelectChapter, onClearChat, onUploadP
       </div>
 
       <nav className="flex-1 px-3 space-y-1 overflow-y-auto">
-        <button
-          onClick={() => onSelectChapter(null)}
-          className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-            activeChapter === null 
-              ? 'bg-white shadow-sm border border-slate-200 text-ink font-medium' 
-              : 'text-graphite hover:text-ink hover:bg-slate-100'
-          }`}
-        >
-          All Chapters
-        </button>
-
-        {CHAPTERS.map((ch) => {
-          const active = activeChapter === ch.num;
-          return (
+        {!uploadedDocumentName ? (
+          <>
             <button
-              key={ch.num}
-              onClick={() => onSelectChapter(ch.num)}
+              onClick={() => onSelectChapter(null)}
               className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
-                active 
+                activeChapter === null 
                   ? 'bg-white shadow-sm border border-slate-200 text-ink font-medium' 
                   : 'text-graphite hover:text-ink hover:bg-slate-100'
               }`}
             >
-              <span className="text-ash mr-2 block text-xs mb-0.5">Chapter {ch.num}</span>
-              <span className="block leading-snug">{ch.title}</span>
+              All Chapters
             </button>
-          );
-        })}
+
+            {CHAPTERS.map((ch) => {
+              const active = activeChapter === ch.num;
+              return (
+                <button
+                  key={ch.num}
+                  onClick={() => onSelectChapter(ch.num)}
+                  className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                    active 
+                      ? 'bg-white shadow-sm border border-slate-200 text-ink font-medium' 
+                      : 'text-graphite hover:text-ink hover:bg-slate-100'
+                  }`}
+                >
+                  <span className="text-ash mr-2 block text-xs mb-0.5">Chapter {ch.num}</span>
+                  <span className="block leading-snug">{ch.title}</span>
+                </button>
+              );
+            })}
+          </>
+        ) : (
+          <button
+            className="w-full text-left px-3 py-3 rounded text-sm transition-colors bg-white shadow-sm border border-slate-200 text-ink font-medium"
+          >
+            <span className="text-ash mr-2 block text-xs mb-0.5">Uploaded Document</span>
+            <span className="block leading-snug truncate" title={uploadedDocumentName}>
+              {uploadedDocumentName}
+            </span>
+          </button>
+        )}
       </nav>
 
       {/* Upload PDF */}

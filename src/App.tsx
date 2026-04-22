@@ -21,6 +21,7 @@ export default function App() {
   const [inputValue, setInputValue]       = useState('');
   const [isProcessing, setIsProcessing]   = useState(false);
   const [processStatus, setProcessStatus] = useState('');
+  const [uploadedDocumentName, setUploadedDocumentName] = useState<string | null>(null);
   const { messages, isStreaming, sendMessage, clearChat } = useChat(activeChapter);
   const bottomRef = useRef<HTMLDivElement>(null);
 
@@ -58,6 +59,7 @@ export default function App() {
 
       setCustomChunks(ncertChunks);
       setActiveChapter(99);
+      setUploadedDocumentName(file.name.replace('.pdf', ''));
       clearChat();
     } catch (e: any) {
       console.error(e);
@@ -87,8 +89,10 @@ export default function App() {
           clearChat();
           setActiveChapter(null);
           setCustomChunks([]);
+          setUploadedDocumentName(null);
         }}
         onUploadPdf={handleUploadPdf}
+        uploadedDocumentName={uploadedDocumentName}
       />
 
       <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
@@ -135,6 +139,7 @@ export default function App() {
           disabled={isStreaming || isProcessing}
           value={inputValue}
           onChange={setInputValue}
+          uploadedDocumentName={uploadedDocumentName}
         />
         
         {isProcessing && (

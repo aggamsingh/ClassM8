@@ -106,6 +106,9 @@ export function retrieve(
 /** Compose a readable answer from the top retrieved chunk */
 export function buildAnswer(query: string, results: RetrievalResult[]): string {
   if (results.length === 0) {
+    if (CUSTOM_CHUNKS.length > 0) {
+      return "I couldn't find information about that in your uploaded document. Try rephrasing, or ask doubts related to the same chapter.";
+    }
     return "I couldn't find information about that in your NCERT Science textbook. Try rephrasing, or ask about Chemical Reactions, Acids & Bases, Metals, or Light.";
   }
   const top = results[0].chunk;
