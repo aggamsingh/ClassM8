@@ -86,16 +86,18 @@ export function retrieve(
     ? activePool.filter((c) => c.chapterNum === chapterFilter)
     : activePool;
 
+  const threshold = queryEmbedding ? 0.35 : 0;
+
   let results = pool
     .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
-    .filter((r) => r.score > 0)
+    .filter((r) => r.score > threshold)
     .sort((a, b) => b.score - a.score)
     .slice(0, topK);
     
   if (results.length === 0 && chapterFilter !== null) {
     results = activePool
       .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
-      .filter((r) => r.score > 0)
+      .filter((r) => r.score > threshold)
       .sort((a, b) => b.score - a.score)
       .slice(0, topK);
   }
@@ -119,19 +121,20 @@ export function buildAnswer(query: string, results: RetrievalResult[]): string {
 
 function buildIntro(query: string, chunk: NcertChunk): string {
   const q = query.trim().toLowerCase();
+  const sourceName = CUSTOM_CHUNKS.length > 0 ? "uploaded document" : "NCERT textbook";
 
   if (q.startsWith('what is') || q.startsWith('define') || q.startsWith('what are')) {
     const term = q.replace(/^(what is|what are|define)\s+/i, '').replace(/\?$/, '');
-    return `Great question! Here's what your NCERT textbook says about **${term}**:`;
+    return `Great question! Here's what your ${sourceName} says about **${term}**:`;
   }
   if (q.startsWith('how')) {
-    return `Here's how your NCERT textbook explains this:`;
+    return `Here's how your ${sourceName} explains this:`;
   }
   if (q.startsWith('why')) {
-    return `Your NCERT textbook explains the reason as follows:`;
+    return `Your ${sourceName} explains the reason as follows:`;
   }
   if (q.includes('example') || q.includes('examples')) {
-    return `Here are the examples from your NCERT textbook:`;
+    return `Here are the examples from your ${sourceName}:`;
   }
-  return `Based on your NCERT textbook (${chunk.chapter}):`;
+  return `Based on your ${sourceName} (${chunk.chapter}):`;
 }

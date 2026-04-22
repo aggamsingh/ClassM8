@@ -18,7 +18,7 @@ class PipelineSingleton {
 
 class TextGenerationSingleton {
   static task: any = 'text-generation';
-  static model = 'Xenova/SmolLM-135M-Instruct'; // Lighter, faster model
+  static model = 'Xenova/Qwen1.5-0.5B-Chat';
   static instance: any = null;
 
   static async getInstance(progress_callback?: any) {
