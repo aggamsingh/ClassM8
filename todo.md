@@ -22,9 +22,16 @@
 
 - [x] **Retrieval Engine Upgrade**
   - [x] Update `src/lib/retrieval.ts` to compute Cosine Similarity between the query embedding and chunk embeddings.
-  - [ ] Refactor `retrieve()` to use the new uploaded chunks instead of the hardcoded `NCERT_CHUNKS` when a document is uploaded.
+  - [x] Refactor `retrieve()` to use the new uploaded chunks instead of the hardcoded `NCERT_CHUNKS` when a document is uploaded.
 
-- [ ] **Testing & Polish**
-  - [ ] Test with a sample PDF.
-  - [ ] Ensure the browser UI does not freeze during the embedding process.
-  - [ ] Verify semantic search correctly returns the most relevant paragraph.
+- [x] **Conversational LLM Generation**
+  - [x] Integrate `Xenova/Qwen1.5-0.5B-Chat` in the Web Worker.
+  - [x] Intercept retrieved chunk context and prompt the LLM to generate conversational answers.
+  - [x] Implement UI streaming animation that dynamically renders LLM tokens.
+  - [x] Configure fallback keyword retrieval thresholds to handle unrelated queries safely.
+
+- [x] **Testing & Polish**
+  - [x] Test with a sample PDF.
+  - [x] Ensure the browser UI does not freeze during the embedding process.
+  - [x] Verify semantic search correctly returns the most relevant paragraph.
+  - [x] Confirm dynamic UI text correctly reflects the uploaded document.

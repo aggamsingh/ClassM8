@@ -149,17 +149,18 @@ ClassM8/
 
 ---
 
-## 🌟 New in `feature/pdf-semantic-rag` Branch
+## 🌟 New in v0.2 (Offline PDF RAG & Conversational LLM)
 
-We've extended the prototype with **Local PDF RAG** capabilities! If you're on the `feature/pdf-semantic-rag` branch, you can test these dynamic features:
+ClassM8 has been upgraded with **Local PDF Semantic Search** and **Offline Conversational LLM** capabilities! All features have been merged into the `main` branch:
 
 - **PDF Upload & Parsing:** Upload your own NCERT chapters (or any PDF). The app uses `pdfjs-dist` to parse and chunk the text entirely in your browser.
 - **Local Semantic Search:** Powered by `Transformers.js` and the `all-MiniLM-L6-v2` model running in a background Web Worker. It generates embeddings locally and uses Cosine Similarity to find conceptually relevant paragraphs, moving beyond exact keyword matches.
-- **Real-time Processing UI:** A beautiful overlay provides live feedback during text extraction and AI model execution.
+- **Conversational AI Generation:** The app now uses the `Xenova/Qwen1.5-0.5B-Chat` LLM directly in your browser. It takes the context retrieved from your PDF and dynamically generates smooth, streaming conversational answers — all running 100% offline.
+- **Dynamic UI & Intelligent Fallbacks:** The interface adapts its labels, headers, and error messages based on whether you are using the default NCERT textbook or a custom uploaded document.
 
 **To try it out:**
-1. Switch to the branch: `git checkout feature/pdf-semantic-rag`
-2. Install new dependencies: `npm install`
+1. Clone the `main` branch.
+2. Install dependencies: `npm install`
 3. Run the dev server: `npm run dev`
 4. Click **Upload PDF** in the sidebar. 
-*(Note: An active internet connection is required on the very first run to download the ~22MB AI model. Afterwards, it is 100% offline).*
+*(Note: An active internet connection is required on the very first run to download the local AI models. Afterwards, it is 100% offline).*
