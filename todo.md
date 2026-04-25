@@ -1,26 +1,14 @@
-# V1 Production Web App Demo — To-Do List
+# V1 Production Web App Demo — Revised To-Do List
 
-- [ ] **1. Persistent Storage Setup (IndexedDB)**
-  - [ ] Install `localforage` or use raw IndexedDB wrapper.
-  - [ ] Create database logic to save/load User Sessions (chat histories).
-  - [ ] Create database logic to save/load Document Data (name, raw text chunks, and their vector embeddings).
+- [ ] **1. Enforce English-Only Output**
+  - [ ] Update `embedWorker.ts` system prompt to strictly enforce "English ONLY".
+  - [ ] Add `repetition_penalty: 1.15` to the generation configuration to prevent token looping.
 
-- [ ] **2. Multi-Document Management**
-  - [ ] Update `Sidebar.tsx` to display a list of all saved documents.
-  - [ ] Add ability to switch the "Active Document" for querying.
-  - [ ] Add ability to delete a document from storage.
+- [ ] **2. Speed & Reliability Optimization**
+  - [ ] Lower `temperature` to `0.2` for more deterministic, faster answers.
+  - [ ] Set `top_k: 50` and `top_p: 0.9` to optimize token sampling.
+  - [ ] Reduce `max_new_tokens` to `150` to encourage concise, direct doubt-solving.
 
-- [ ] **3. Chat Session Management**
-  - [ ] Update `Sidebar.tsx` to list past chat sessions.
-  - [ ] Add a "New Chat" button to clear the active view but keep history.
-  - [ ] Load past messages into `App.tsx` when selecting an older chat.
-
-- [ ] **4. Progressive Web App (PWA) Integration**
-  - [ ] Install `vite-plugin-pwa`.
-  - [ ] Configure `vite.config.ts` to generate manifest and service worker.
-  - [ ] Provide offline caching for HTML, CSS, JS, and UI assets.
-
-- [ ] **5. UI & Polish**
-  - [ ] Show a proper "Model downloading..." state vs "Processing PDF..." state to clarify wait times.
-  - [ ] Update the welcome screen (`App.tsx`) to clearly reflect the user's document library.
-  - [ ] Test completely offline (turn off Wi-Fi and refresh).
+- [ ] **3. Testing & Verification**
+  - [ ] Test with a query that previously triggered Chinese output.
+  - [ ] Ensure generation speed is visibly faster and strictly grounded in the retrieved chunk.
