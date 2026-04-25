@@ -18,7 +18,7 @@ class PipelineSingleton {
 
 class TextGenerationSingleton {
   static task: any = 'text-generation';
-  static model = 'Xenova/Qwen1.5-0.5B-Chat';
+  static model = 'Xenova/TinyLlama-1.1B-Chat-v1.0';
   static instance: any = null;
 
   static async getInstance(progress_callback?: any) {
@@ -80,8 +80,8 @@ self.addEventListener('message', async (event) => {
       let lastText = "";
       const output = await generator(prompt, {
         max_new_tokens: 150,
-        temperature: 0.1,
-        top_k: 10,
+        temperature: 0.3,
+        top_k: 50,
         top_p: 0.9,
         return_full_text: false,
         callback_function: (beams: any[]) => {
