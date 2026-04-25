@@ -15,7 +15,7 @@ export function SourceCards({ sources }: SourceCardsProps) {
           <div key={i} className="flex items-baseline gap-2 text-xs">
             <span className="text-ash font-mono">[{i + 1}]</span>
             <span className="text-ink">
-              NCERT Science, Ch. {src.chapterNum}: <span className="italic">{src.chapter}</span>. 
+              Document: <span className="italic">{src.chapter}</span>. 
               Section: <span className="font-medium bg-highlighter px-1">{src.section}</span>.
             </span>
           </div>
