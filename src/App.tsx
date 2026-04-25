@@ -9,20 +9,20 @@ import { extractTextFromPDF, chunkText } from './lib/pdfParser';
 import { setCustomChunks } from './lib/retrieval';
 import type { NcertChunk } from './lib/ncertData';
 
-const SUGGESTIONS = [
-  { text: "What is a redox reaction?", chapter: 1 },
-  { text: "What is the pH scale?", chapter: 2 },
-  { text: "Explain Snell's Law", chapter: 10 },
-  { text: "How are metals extracted?", chapter: 3 },
-];
+interface DocumentData {
+  name: string;
+  chunks: NcertChunk[];
+}
 
 export default function App() {
-  const [activeChapter, setActiveChapter] = useState<number | null>(null);
+  const [documents, setDocuments] = useState<DocumentData[]>([]);
+  const [activeDocumentIndex, setActiveDocumentIndex] = useState<number | null>(null);
+  
   const [inputValue, setInputValue]       = useState('');
   const [isProcessing, setIsProcessing]   = useState(false);
   const [processStatus, setProcessStatus] = useState('');
-  const [uploadedDocumentName, setUploadedDocumentName] = useState<string | null>(null);
-  const { messages, isStreaming, sendMessage, clearChat } = useChat(activeChapter);
+  
+  const { messages, isStreaming, sendMessage, clearChat } = useChat(activeDocumentIndex);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const handleUploadPdf = async (file: File) => {
@@ -41,14 +41,14 @@ export default function App() {
         }
       });
 
-      const ncertChunks: NcertChunk[] = [];
+      const documentChunks: NcertChunk[] = [];
       
       for (let i = 0; i < chunks.length; i++) {
         setProcessStatus(`Analyzing Content... ${Math.round((i / chunks.length) * 100)}%`);
         const chunkStr = chunks[i];
         const embedding = await getEmbedding(chunkStr);
-        ncertChunks.push({
-          id: `custom-${i}`,
+        documentChunks.push({
+          id: `custom-${Date.now()}-${i}`,
           chapter: file.name.replace('.pdf', ''),
           chapterNum: 99,
           section: `Part ${i + 1}`,
@@ -57,9 +57,17 @@ export default function App() {
         });
       }
 
-      setCustomChunks(ncertChunks);
-      setActiveChapter(99);
-      setUploadedDocumentName(file.name.replace('.pdf', ''));
+      const docName = file.name.replace('.pdf', '');
+      const newDoc: DocumentData = { name: docName, chunks: documentChunks };
+      
+      setDocuments(prev => {
+        const next = [...prev, newDoc];
+        const newIndex = next.length - 1;
+        setActiveDocumentIndex(newIndex);
+        setCustomChunks(documentChunks);
+        return next;
+      });
+      
       clearChat();
     } catch (e: any) {
       console.error(e);
@@ -70,29 +78,35 @@ export default function App() {
     }
   };
 
+  const handleSelectDocument = (index: number | null) => {
+    setActiveDocumentIndex(index);
+    if (index !== null && documents[index]) {
+      setCustomChunks(documents[index].chunks);
+    } else {
+      setCustomChunks([]);
+    }
+    clearChat();
+  };
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   const showWelcome = messages.length === 0;
-
-  const visibleSuggestions = activeChapter
-    ? SUGGESTIONS.filter(s => s.chapter === activeChapter)
-    : SUGGESTIONS;
+  const activeDocumentName = activeDocumentIndex !== null && documents[activeDocumentIndex] 
+    ? documents[activeDocumentIndex].name 
+    : null;
 
   return (
     <div className="flex h-screen overflow-hidden bg-paper bg-grid-pattern">
       <Sidebar
-        activeChapter={activeChapter}
-        onSelectChapter={setActiveChapter}
+        documents={documents.map(d => d.name)}
+        activeDocumentIndex={activeDocumentIndex}
+        onSelectDocument={handleSelectDocument}
         onClearChat={() => {
           clearChat();
-          setActiveChapter(null);
-          setCustomChunks([]);
-          setUploadedDocumentName(null);
         }}
         onUploadPdf={handleUploadPdf}
-        uploadedDocumentName={uploadedDocumentName}
       />
 
       <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
@@ -104,23 +118,13 @@ export default function App() {
                   ClassM8
                 </h1>
                 <p className="text-xl text-graphite font-serif italic max-w-2xl leading-relaxed mb-12">
-                  An offline retrieval engine for the CBSE Class 10 Science syllabus. Ask a question, and it will cite the exact passage from your NCERT textbook.
+                  An offline AI tutor. Upload your PDF documents and ask questions directly. Answers are generated 100% locally on your device.
                 </p>
 
                 <div className="space-y-4">
-                  <p className="text-xs uppercase tracking-widest font-bold text-ash">Sample Inquiries</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {visibleSuggestions.map((s, i) => (
-                      <button
-                        key={i}
-                        onClick={() => sendMessage(s.text)}
-                        className="text-left px-5 py-4 border border-slate-200 bg-white rounded shadow-sm text-ink font-medium hover:border-ink hover:shadow-md transition-all group"
-                      >
-                        <span className="text-ash group-hover:text-ink mr-2 transition-colors">→</span>
-                        {s.text}
-                      </button>
-                    ))}
-                  </div>
+                  <p className="text-xs uppercase tracking-widest font-bold text-ash">
+                    {documents.length > 0 ? "Ask a question to start" : "Upload a Document to Begin"}
+                  </p>
                 </div>
               </div>
             )}
@@ -136,10 +140,10 @@ export default function App() {
 
         <InputBar
           onSend={sendMessage}
-          disabled={isStreaming || isProcessing}
+          disabled={isStreaming || isProcessing || activeDocumentIndex === null}
           value={inputValue}
           onChange={setInputValue}
-          uploadedDocumentName={uploadedDocumentName}
+          activeDocumentName={activeDocumentName}
         />
         
         {isProcessing && (

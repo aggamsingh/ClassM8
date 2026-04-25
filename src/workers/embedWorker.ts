@@ -68,7 +68,7 @@ self.addEventListener('message', async (event) => {
       });
 
       const messages = [
-        { role: "system", content: "You are an AI tutor. Answer the user's question conversationally using ONLY the provided context." },
+        { role: "system", content: "You are an English-speaking AI tutor. You MUST answer in English ONLY. Do not use any other languages. Answer the user's question concisely and conversationally using ONLY the provided context." },
         { role: "user", content: `Context: ${event.data.context}\n\nQuestion: ${text}` }
       ];
 
@@ -79,8 +79,11 @@ self.addEventListener('message', async (event) => {
 
       let lastText = "";
       const output = await generator(prompt, {
-        max_new_tokens: 256,
-        temperature: 0.7,
+        max_new_tokens: 150,
+        temperature: 0.2,
+        top_k: 50,
+        top_p: 0.9,
+        repetition_penalty: 1.15,
         return_full_text: false,
         callback_function: (beams: any[]) => {
           // Extract only the newly generated tokens

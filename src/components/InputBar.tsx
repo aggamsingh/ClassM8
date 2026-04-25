@@ -5,10 +5,10 @@ interface InputBarProps {
   disabled: boolean;
   value: string;
   onChange: (v: string) => void;
-  uploadedDocumentName?: string | null;
+  activeDocumentName?: string | null;
 }
 
-export function InputBar({ onSend, disabled, value, onChange, uploadedDocumentName }: InputBarProps) {
+export function InputBar({ onSend, disabled, value, onChange, activeDocumentName }: InputBarProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
@@ -56,9 +56,9 @@ export function InputBar({ onSend, disabled, value, onChange, uploadedDocumentNa
         </button>
       </div>
       <p className="text-center text-[10px] uppercase tracking-widest text-ash mt-4 font-bold">
-        {uploadedDocumentName 
-          ? `Answers sourced directly from ${uploadedDocumentName}` 
-          : "Answers sourced directly from NCERT Science • Class 10"}
+        {activeDocumentName 
+          ? `Answers sourced directly from ${activeDocumentName}` 
+          : "Upload a document to start asking questions"}
       </p>
     </div>
   );

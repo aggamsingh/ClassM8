@@ -1,4 +1,4 @@
-import { NCERT_CHUNKS, type NcertChunk } from './ncertData';
+import { type NcertChunk } from './ncertData';
 
 export let CUSTOM_CHUNKS: NcertChunk[] = [];
 
@@ -55,10 +55,7 @@ function scoreChunk(queryTokens: string[], chunk: NcertChunk, queryEmbedding?: n
 
   let score = 0;
   for (const qt of queryTokens) {
-    // Exact match (weighted higher)
     score += ((tf.get(qt) ?? 0) / totalTerms) * 3;
-
-    // Partial / stem match
     for (const [ct, count] of tf.entries()) {
       if (ct !== qt && (ct.startsWith(qt) || qt.startsWith(ct))) {
         score += (count / totalTerms) * 1.5;
@@ -75,68 +72,48 @@ export interface RetrievalResult {
 
 export function retrieve(
   query: string,
-  chapterFilter: number | null = null,
+  _chapterFilter: number | null = null, // Can be used as document index if needed
   topK = 3,
   queryEmbedding: number[] | null = null
 ): RetrievalResult[] {
   const queryTokens = tokenize(query);
   if (queryTokens.length === 0 && !queryEmbedding) return [];
 
-  const activePool = CUSTOM_CHUNKS.length > 0 ? CUSTOM_CHUNKS : NCERT_CHUNKS;
-
-  const pool = chapterFilter
-    ? activePool.filter((c) => c.chapterNum === chapterFilter)
-    : activePool;
-
   const threshold = queryEmbedding ? 0.35 : 0.05;
 
-  let results = pool
+  let results = CUSTOM_CHUNKS
     .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
     .filter((r) => r.score > threshold)
     .sort((a, b) => b.score - a.score)
     .slice(0, topK);
     
-  if (results.length === 0 && chapterFilter !== null) {
-    results = activePool
-      .map((chunk) => ({ chunk, score: scoreChunk(queryTokens, chunk, queryEmbedding) }))
-      .filter((r) => r.score > threshold)
-      .sort((a, b) => b.score - a.score)
-      .slice(0, topK);
-  }
-
   return results;
 }
 
-/** Compose a readable answer from the top retrieved chunk */
 export function buildAnswer(query: string, results: RetrievalResult[]): string {
   if (results.length === 0) {
-    if (CUSTOM_CHUNKS.length > 0) {
-      return "I couldn't find information about that in your uploaded document. Try rephrasing, or ask doubts related to the same chapter.";
-    }
-    return "I couldn't find information about that in your NCERT Science textbook. Try rephrasing, or ask about Chemical Reactions, Acids & Bases, Metals, or Light.";
+    return "I couldn't find information about that in the current document. Try rephrasing or ask something else related to this document.";
   }
   const top = results[0].chunk;
-
   const intro = buildIntro(query, top);
   return `${intro}\n\n${top.text}`;
 }
 
-function buildIntro(query: string, chunk: NcertChunk): string {
+function buildIntro(query: string, _chunk: NcertChunk): string {
   const q = query.trim().toLowerCase();
-  const sourceName = CUSTOM_CHUNKS.length > 0 ? "uploaded document" : "NCERT textbook";
-
+  
   if (q.startsWith('what is') || q.startsWith('define') || q.startsWith('what are')) {
     const term = q.replace(/^(what is|what are|define)\s+/i, '').replace(/\?$/, '');
-    return `Great question! Here's what your ${sourceName} says about **${term}**:`;
+    return `Great question! Here's what the document says about **${term}**:`;
   }
   if (q.startsWith('how')) {
-    return `Here's how your ${sourceName} explains this:`;
+    return `Here's how the document explains this:`;
   }
   if (q.startsWith('why')) {
-    return `Your ${sourceName} explains the reason as follows:`;
+    return `The document explains the reason as follows:`;
   }
   if (q.includes('example') || q.includes('examples')) {
-    return `Here are the examples from your ${sourceName}:`;
+    return `Here are the examples from the document:`;
   }
-  return `Based on your ${sourceName} (${chunk.chapter}):`;
+  return `Based on the document:`;
 }

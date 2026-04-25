@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { retrieve, buildAnswer, type RetrievalResult, CUSTOM_CHUNKS } from '../lib/retrieval';
 import type { Message, Source } from '../lib/types';
 import { getEmbedding, generateAnswer } from '../lib/workerClient';
@@ -88,7 +88,7 @@ export function useChat(chapterFilter: number | null) {
         const animationPromise = animate();
 
         try {
-          await generateAnswer(query, results[0].chunk.text, (chunk, fullText) => {
+          await generateAnswer(query, results[0].chunk.text, (_chunk, fullText) => {
             textBuffer = fullText;
           });
         } catch (e) {

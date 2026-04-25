@@ -10,7 +10,7 @@ export function initWorker(onProgress?: (progress: any) => void): Promise<void> 
     worker = new Worker(new URL('../workers/embedWorker.ts', import.meta.url), { type: 'module' });
     
     worker.onmessage = (event) => {
-      const { id, status, embedding, progress, error, text, chunk, fullText } = event.data;
+      const { id, status, embedding, progress, error } = event.data;
       
       if ((status === 'progress' || status === 'model_progress') && onProgress) {
         onProgress(progress);
@@ -60,7 +60,7 @@ export function getEmbedding(text: string): Promise<number[]> {
 export function generateAnswer(
   query: string,
   context: string,
-  onStream: (chunk: string, fullText: string) => void
+  onStream: (_chunk: string, _fullText: string) => void
 ): Promise<string> {
   if (!worker) throw new Error("Worker not initialized");
   
