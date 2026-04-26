@@ -73,7 +73,7 @@ export interface RetrievalResult {
 export function retrieve(
   query: string,
   _chapterFilter: number | null = null, // Can be used as document index if needed
-  topK = 3,
+  topK = 5,
   queryEmbedding: number[] | null = null
 ): RetrievalResult[] {
   const queryTokens = tokenize(query);
@@ -88,6 +88,16 @@ export function retrieve(
     .slice(0, topK);
     
   return results;
+}
+
+/**
+ * Build a numbered context string from retrieved results for the LLM prompt.
+ * Each paragraph is labeled with its source section for grounding.
+ */
+export function buildContext(results: RetrievalResult[]): string {
+  return results
+    .map((r, i) => `[Paragraph ${i + 1} — ${r.chunk.section}]\n${r.chunk.text}`)
+    .join('\n\n');
 }
 
 export function buildAnswer(query: string, results: RetrievalResult[]): string {

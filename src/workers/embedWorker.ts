@@ -1,4 +1,4 @@
-import { pipeline, env } from '@xenova/transformers';
+import { pipeline, env } from '@huggingface/transformers';
 
 // Skip local model check since we are running in the browser
 env.allowLocalModels = false;
@@ -18,12 +18,15 @@ class PipelineSingleton {
 
 class TextGenerationSingleton {
   static task: any = 'text-generation';
-  static model = 'Xenova/TinyLlama-1.1B-Chat-v1.0';
+  static model = 'onnx-community/SmolLM2-360M-Instruct';
   static instance: any = null;
 
   static async getInstance(progress_callback?: any) {
     if (this.instance === null) {
-      this.instance = pipeline(this.task, this.model, { progress_callback });
+      this.instance = pipeline(this.task, this.model, {
+        progress_callback,
+        dtype: 'q4f16',
+      });
     }
     return this.instance;
   }
@@ -67,34 +70,44 @@ self.addEventListener('message', async (event) => {
         }
       });
 
+      const systemPrompt = `You are an accurate academic tutor. Your ONLY job is to answer the student's question using ONLY the provided context paragraphs below. Rules:
+1. Use ONLY information from the context. Do NOT add outside knowledge.
+2. Be concise and clear — 2-4 sentences max.
+3. If the context does not contain the answer, say "I don't have enough information in the provided document to answer this."
+4. Respond ONLY in English.`;
+
       const messages = [
-        { role: "system", content: "You are a helpful AI tutor. You MUST answer the user's question concisely using ONLY the provided context. IMPORTANT: Respond strictly in English. Do NOT output any Chinese characters or other languages." },
-        { role: "user", content: `Context: ${event.data.context}\n\nQuestion: ${text}` }
+        { role: "system", content: systemPrompt },
+        { role: "user", content: `Context:\n${event.data.context}\n\nQuestion: ${text}\n\nAnswer using ONLY the context above:` }
       ];
 
-      // Format with chat template
-      const prompt = generator.tokenizer.apply_chat_template(messages, { tokenize: false, add_generation_prompt: true });
-      const promptTokenIds = generator.tokenizer(prompt).input_ids;
-      const promptLength = promptTokenIds.data.length;
-
       let lastText = "";
-      const output = await generator(prompt, {
-        max_new_tokens: 150,
-        temperature: 0.3,
+      const output = await generator(messages, {
+        max_new_tokens: 200,
+        temperature: 0.2,
         top_k: 50,
         top_p: 0.9,
+        repetition_penalty: 1.15,
         return_full_text: false,
-        callback_function: (beams: any[]) => {
-          // Extract only the newly generated tokens
-          const newTokens = beams[0].output_token_ids.slice(promptLength);
-          const generatedText = generator.tokenizer.decode(newTokens, { skip_special_tokens: true });
-          
-          const newText = generatedText.slice(lastText.length);
-          lastText = generatedText;
-          self.postMessage({ id, status: 'streaming', chunk: newText, fullText: generatedText });
+        callback_function: (output: any) => {
+          // Extract generated text so far for streaming
+          try {
+            const currentOutput = generator.tokenizer.decode(
+              output[0].output_token_ids,
+              { skip_special_tokens: true }
+            );
+            // Only send the newly generated portion
+            if (currentOutput.length > lastText.length) {
+              const newText = currentOutput.slice(lastText.length);
+              lastText = currentOutput;
+              self.postMessage({ id, status: 'streaming', chunk: newText, fullText: currentOutput });
+            }
+          } catch {
+            // Streaming callback may fail on some token boundaries; ignore
+          }
         }
       });
-      
+
       const finalText = output[0].generated_text.trim();
       self.postMessage({
         id,

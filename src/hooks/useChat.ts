@@ -1,5 +1,5 @@
 import { useState, useRef, useCallback } from 'react';
-import { retrieve, buildAnswer, type RetrievalResult, CUSTOM_CHUNKS } from '../lib/retrieval';
+import { retrieve, buildAnswer, buildContext, type RetrievalResult, CUSTOM_CHUNKS } from '../lib/retrieval';
 import type { Message, Source } from '../lib/types';
 import { getEmbedding, generateAnswer } from '../lib/workerClient';
 
@@ -37,7 +37,7 @@ export function useChat(chapterFilter: number | null) {
         }
       }
 
-      const results: RetrievalResult[] = retrieve(query, chapterFilter, 3, queryEmbedding);
+      const results: RetrievalResult[] = retrieve(query, chapterFilter, 5, queryEmbedding);
       const fullAnswer = buildAnswer(query, results);
       const sources: Source[] = results.map((r) => ({
         chapter: r.chunk.chapter,
@@ -65,6 +65,9 @@ export function useChat(chapterFilter: number | null) {
         let displayedText = "";
         let isGenerationDone = false;
         
+        // Build context from ALL top-5 retrieved chunks (not just #1)
+        const contextForLLM = buildContext(results);
+
         // Character-by-character animation loop
         const animate = async () => {
           while (!isGenerationDone || displayedText.length < textBuffer.length) {
@@ -88,7 +91,7 @@ export function useChat(chapterFilter: number | null) {
         const animationPromise = animate();
 
         try {
-          await generateAnswer(query, results[0].chunk.text, (_chunk, fullText) => {
+          await generateAnswer(query, contextForLLM, (_chunk, fullText) => {
             textBuffer = fullText;
           });
         } catch (e) {
@@ -100,7 +103,7 @@ export function useChat(chapterFilter: number | null) {
         await animationPromise;
 
       } else {
-        // Stream character by character (Simulated)
+        // Stream character by character (Simulated — no LLM, retrieval-only fallback)
         for (let i = 0; i <= fullAnswer.length; i++) {
           if (abortRef.current) break;
           setMessages((prev) =>
