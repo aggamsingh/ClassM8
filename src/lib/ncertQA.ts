@@ -9,10 +9,10 @@ export interface QAEntry {
 
 export const QA_CACHE: QAEntry[] = [
 
-  // ─── CHAPTER 1: Chemical Reactions and Equations ──────────────────
+  // â”€â”€â”€ CHAPTER 1: Chemical Reactions and Equations â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How do you write a chemical equation?",
-    answer: "A chemical equation represents a chemical reaction using symbols and formulas. The reactants are written on the left side, products on the right, separated by an arrow (â†’). Conditions such as heat, light, or catalyst can be written above or below the arrow. Gas evolved is shown by an upward arrow (â†‘) and precipitate by a downward arrow (â†“).",
+    answer: "A chemical equation represents a chemical reaction using symbols and formulas. The reactants are written on the left side, products on the right, separated by an arrow (Ã¢â€ â€™). Conditions such as heat, light, or catalyst can be written above or below the arrow. Gas evolved is shown by an upward arrow (Ã¢â€ â€˜) and precipitate by a downward arrow (Ã¢â€ â€œ).",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Writing a Chemical Equation",
     keywords: ["chemical equation", "write", "reactants", "products", "arrow"]
   },
@@ -30,37 +30,37 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "What is a combination reaction?",
-    answer: "A combination reaction is one in which two or more reactants combine to give a single product. General form: A + B â†’ AB. Examples include burning of coal (C + Oâ‚‚ â†’ COâ‚‚) and calcium oxide reacting with water to form calcium hydroxide (CaO + Hâ‚‚O â†’ Ca(OH)â‚‚). Reactions that release energy as heat are called exothermic reactions.",
+    answer: "A combination reaction is one in which two or more reactants combine to give a single product. General form: A + B Ã¢â€ â€™ AB. Examples include burning of coal (C + OÃ¢â€šâ€š Ã¢â€ â€™ COÃ¢â€šâ€š) and calcium oxide reacting with water to form calcium hydroxide (CaO + HÃ¢â€šâ€šO Ã¢â€ â€™ Ca(OH)Ã¢â€šâ€š). Reactions that release energy as heat are called exothermic reactions.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Combination Reactions",
     keywords: ["combination reaction", "combine", "single product"]
   },
   {
     question: "What is a decomposition reaction?",
-    answer: "A decomposition reaction is the opposite of a combination reaction â€” a single reactant breaks down into two or more simpler products. General form: AB â†’ A + B. Decomposition can be caused by heat (thermal), light (photolytic), or electricity (electrolytic). Example: CaCOâ‚ƒ â†’ CaO + COâ‚‚ on heating.",
+    answer: "A decomposition reaction is the opposite of a combination reaction Ã¢â‚¬â€ a single reactant breaks down into two or more simpler products. General form: AB Ã¢â€ â€™ A + B. Decomposition can be caused by heat (thermal), light (photolytic), or electricity (electrolytic). Example: CaCOÃ¢â€šÆ’ Ã¢â€ â€™ CaO + COÃ¢â€šâ€š on heating.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Decomposition Reactions",
     keywords: ["decomposition", "decompose", "breaks down", "thermal", "photolytic", "electrolytic"]
   },
   {
     question: "What is a displacement reaction?",
-    answer: "In a displacement reaction, a more reactive element displaces a less reactive element from a compound. Example: Iron displaces copper from copper sulphate solution â€” Fe + CuSOâ‚„ â†’ FeSOâ‚„ + Cu. The iron nail becomes coated with copper and the blue colour of copper sulphate fades.",
+    answer: "In a displacement reaction, a more reactive element displaces a less reactive element from a compound. Example: Iron displaces copper from copper sulphate solution Ã¢â‚¬â€ Fe + CuSOÃ¢â€šâ€ž Ã¢â€ â€™ FeSOÃ¢â€šâ€ž + Cu. The iron nail becomes coated with copper and the blue colour of copper sulphate fades.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Displacement Reactions",
     keywords: ["displacement", "displaces", "more reactive", "less reactive"]
   },
   {
     question: "What is a double displacement reaction?",
-    answer: "In a double displacement reaction, ions of two compounds exchange places in aqueous solution to form two new compounds. General form: AB + CD â†’ AD + CB. One product is usually an insoluble precipitate, a gas, or water. Example: Naâ‚‚SOâ‚„ + BaClâ‚‚ â†’ BaSOâ‚„â†“ + 2NaCl.",
+    answer: "In a double displacement reaction, ions of two compounds exchange places in aqueous solution to form two new compounds. General form: AB + CD Ã¢â€ â€™ AD + CB. One product is usually an insoluble precipitate, a gas, or water. Example: NaÃ¢â€šâ€šSOÃ¢â€šâ€ž + BaClÃ¢â€šâ€š Ã¢â€ â€™ BaSOÃ¢â€šâ€žÃ¢â€ â€œ + 2NaCl.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Double Displacement Reactions",
     keywords: ["double displacement", "precipitation", "exchange", "precipitate"]
   },
   {
     question: "What is a precipitation reaction?",
-    answer: "A precipitation reaction is one in which an insoluble solid (precipitate) is formed when two aqueous solutions react. Example: BaClΓéé + NaΓééSOΓéä ΓåÆ BaSOΓéäΓåô + 2NaCl.",
+    answer: "A precipitation reaction is one in which an insoluble solid (precipitate) is formed when two aqueous solutions react. Example: BaClÎ“Ã©Ã© + NaÎ“Ã©Ã©SOÎ“Ã©Ã¤ Î“Ã¥Ã† BaSOÎ“Ã©Ã¤Î“Ã¥Ã´ + 2NaCl.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Double Displacement",
     keywords: ["precipitation", "insoluble", "BaSO4"]
   },
   {
     question: "What is a redox reaction?",
-    answer: "A redox reaction is one in which oxidation and reduction occur simultaneously. Oxidation is the gain of oxygen or loss of hydrogen; reduction is the loss of oxygen or gain of hydrogen. Example: CuO + Hâ‚‚ â†’ Cu + Hâ‚‚O â€” copper oxide is reduced and hydrogen is oxidised. The substance oxidised is the reducing agent; the substance reduced is the oxidising agent.",
+    answer: "A redox reaction is one in which oxidation and reduction occur simultaneously. Oxidation is the gain of oxygen or loss of hydrogen; reduction is the loss of oxygen or gain of hydrogen. Example: CuO + HÃ¢â€šâ€š Ã¢â€ â€™ Cu + HÃ¢â€šâ€šO Ã¢â‚¬â€ copper oxide is reduced and hydrogen is oxidised. The substance oxidised is the reducing agent; the substance reduced is the oxidising agent.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Oxidation and Reduction",
     keywords: ["redox", "oxidation", "reduction", "oxidising agent", "reducing agent"]
   },
@@ -78,7 +78,7 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "What is corrosion?",
-    answer: "Corrosion is the slow eating away of a metal surface due to reaction with air, moisture, or chemicals. The most common example is rusting of iron: 4Fe + 3Oâ‚‚ + 2Hâ‚‚O â†’ 2Feâ‚‚Oâ‚ƒÂ·Hâ‚‚O. Silver articles turn black due to formation of silver sulphide. Prevention methods include painting, oiling, galvanising, or alloying.",
+    answer: "Corrosion is the slow eating away of a metal surface due to reaction with air, moisture, or chemicals. The most common example is rusting of iron: 4Fe + 3OÃ¢â€šâ€š + 2HÃ¢â€šâ€šO Ã¢â€ â€™ 2FeÃ¢â€šâ€šOÃ¢â€šÆ’Ã‚Â·HÃ¢â€šâ€šO. Silver articles turn black due to formation of silver sulphide. Prevention methods include painting, oiling, galvanising, or alloying.",
     chapterNum: 1, chapter: "Chemical Reactions and Equations", section: "Corrosion and Rancidity",
     keywords: ["corrosion", "rusting", "rust", "iron", "silver"]
   },
@@ -101,7 +101,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["magnesium", "oxide layer", "cleaning"]
   },
 
-  // ─── CHAPTER 2: Acids, Bases and Salts ────────────────────────────
+  // â”€â”€â”€ CHAPTER 2: Acids, Bases and Salts â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "What are indicators?",
     answer: "Indicators are substances that change color in acidic or basic solutions. Examples include litmus, phenolphthalein, and methyl orange.",
@@ -110,25 +110,25 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "What are salts?",
-    answer: "Salts are ionic compounds formed by neutralisation of an acid with a base. Common salt is sodium chloride (NaCl). Washing soda (Naâ‚‚COâ‚ƒÂ·10Hâ‚‚O) is used as a cleaning agent. Baking soda (NaHCOâ‚ƒ) is used in cooking and as an antacid. Bleaching powder is used as a disinfectant. Plaster of Paris is used for casts.",
+    answer: "Salts are ionic compounds formed by neutralisation of an acid with a base. Common salt is sodium chloride (NaCl). Washing soda (NaÃ¢â€šâ€šCOÃ¢â€šÆ’Ã‚Â·10HÃ¢â€šâ€šO) is used as a cleaning agent. Baking soda (NaHCOÃ¢â€šÆ’) is used in cooking and as an antacid. Bleaching powder is used as a disinfectant. Plaster of Paris is used for casts.",
     chapterNum: 2, chapter: "Acids, Bases and Salts", section: "Salts and Common Salt",
     keywords: ["salts", "sodium chloride", "washing soda", "baking soda", "plaster of paris"]
   },
   {
     question: "What are the properties of acids?",
-    answer: "Acids taste sour, turn blue litmus red, and dissolve in water to release hydrogen ions (Hâº). Examples include HCl, Hâ‚‚SOâ‚„, HNOâ‚ƒ, and acetic acid. Acids react with metals to produce hydrogen gas and with metal carbonates to produce COâ‚‚. Acids conduct electricity in aqueous solution due to free ions.",
+    answer: "Acids taste sour, turn blue litmus red, and dissolve in water to release hydrogen ions (HÃ¢ÂÂº). Examples include HCl, HÃ¢â€šâ€šSOÃ¢â€šâ€ž, HNOÃ¢â€šÆ’, and acetic acid. Acids react with metals to produce hydrogen gas and with metal carbonates to produce COÃ¢â€šâ€š. Acids conduct electricity in aqueous solution due to free ions.",
     chapterNum: 2, chapter: "Acids, Bases and Salts", section: "Properties of Acids",
     keywords: ["acids", "properties", "sour", "litmus", "hydrogen ion", "H+"]
   },
   {
     question: "What are the properties of bases?",
-    answer: "Bases taste bitter, feel soapy, turn red litmus blue, and release hydroxide ions (OHâ») in water. Bases soluble in water are called alkalis. Examples: NaOH, KOH, Ca(OH)â‚‚. Bases react with acids in a neutralisation reaction to form salt and water.",
+    answer: "Bases taste bitter, feel soapy, turn red litmus blue, and release hydroxide ions (OHÃ¢ÂÂ») in water. Bases soluble in water are called alkalis. Examples: NaOH, KOH, Ca(OH)Ã¢â€šâ€š. Bases react with acids in a neutralisation reaction to form salt and water.",
     chapterNum: 2, chapter: "Acids, Bases and Salts", section: "Properties of Bases",
     keywords: ["bases", "properties", "bitter", "litmus", "hydroxide", "alkali"]
   },
   {
     question: "What is a neutralisation reaction?",
-    answer: "When an acid and a base react, the products are salt and water. This is called a neutralisation reaction and it is always exothermic. General equation: Acid + Base â†’ Salt + Water. Example: HCl + NaOH â†’ NaCl + Hâ‚‚O. The heat released is called the heat of neutralisation.",
+    answer: "When an acid and a base react, the products are salt and water. This is called a neutralisation reaction and it is always exothermic. General equation: Acid + Base Ã¢â€ â€™ Salt + Water. Example: HCl + NaOH Ã¢â€ â€™ NaCl + HÃ¢â€šâ€šO. The heat released is called the heat of neutralisation.",
     chapterNum: 2, chapter: "Acids, Bases and Salts", section: "Neutralisation Reaction",
     keywords: ["neutralisation", "neutralization", "acid base", "salt water"]
   },
@@ -140,7 +140,7 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "What is the importance of pH in daily life?",
-    answer: "pH plays a vital role in everyday life. Our blood pH is 7.35â€“7.45. Acid rain occurs when pH of rain falls below 5.6. Tooth decay occurs when pH in the mouth drops below 5.5. Antacids neutralise excess stomach acid. Soil pH affects crop growth â€” most crops grow best at pH 6â€“7.",
+    answer: "pH plays a vital role in everyday life. Our blood pH is 7.35Ã¢â‚¬â€œ7.45. Acid rain occurs when pH of rain falls below 5.6. Tooth decay occurs when pH in the mouth drops below 5.5. Antacids neutralise excess stomach acid. Soil pH affects crop growth Ã¢â‚¬â€ most crops grow best at pH 6Ã¢â‚¬â€œ7.",
     chapterNum: 2, chapter: "Acids, Bases and Salts", section: "Importance of pH in Daily Life",
     keywords: ["pH daily life", "acid rain", "tooth decay", "antacid", "blood pH"]
   },
@@ -158,7 +158,7 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "What is water of crystallization?",
-    answer: "Water of crystallization is the fixed number of water molecules chemically bound to a salt. Example: CuSOΓéä┬╖5HΓééO.",
+    answer: "Water of crystallization is the fixed number of water molecules chemically bound to a salt. Example: CuSOÎ“Ã©Ã¤â”¬â•–5HÎ“Ã©Ã©O.",
     chapterNum: 2, chapter: "Acids, Bases and Salts", section: "Salts",
     keywords: ["water of crystallization", "hydrated salt"]
   },
@@ -169,7 +169,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["HCl gas", "aqueous", "ionization"]
   },
 
-  // ─── CHAPTER 3: Metals and Non-metals ─────────────────────────────
+  // â”€â”€â”€ CHAPTER 3: Metals and Non-metals â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How are metals extracted?",
     answer: "Extraction of metals depends on their reactivity: highly reactive metals (Na, Ca, Al) are extracted by electrolysis; moderately reactive metals (Fe, Zn) by reduction with carbon; least reactive metals (Au, Ag) are found free in nature or as simple compounds.",
@@ -178,13 +178,13 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "How can corrosion be prevented?",
-    answer: "Corrosion is prevented by: (1) Painting or coating the metal surface, (2) Galvanisation â€” coating iron with zinc, (3) Electroplating with a less reactive metal, (4) Alloying â€” mixing metals (steel is iron alloyed with carbon), (5) Applying oil or grease. Copper develops verdigris; silver tarnishes to silver sulphide.",
+    answer: "Corrosion is prevented by: (1) Painting or coating the metal surface, (2) Galvanisation Ã¢â‚¬â€ coating iron with zinc, (3) Electroplating with a less reactive metal, (4) Alloying Ã¢â‚¬â€ mixing metals (steel is iron alloyed with carbon), (5) Applying oil or grease. Copper develops verdigris; silver tarnishes to silver sulphide.",
     chapterNum: 3, chapter: "Metals and Non-metals", section: "Corrosion and Its Prevention",
     keywords: ["corrosion prevention", "galvanisation", "electroplating", "alloying", "painting"]
   },
   {
     question: "How do metals react with oxygen?",
-    answer: "Most metals react with oxygen to form metal oxides. Example: 2Mg + Oâ‚‚ â†’ 2MgO. Sodium and potassium react very vigorously with oxygen and must be stored in kerosene. Some metal oxides like aluminium are amphoteric â€” they react with both acids and bases. Gold and platinum do not react with oxygen.",
+    answer: "Most metals react with oxygen to form metal oxides. Example: 2Mg + OÃ¢â€šâ€š Ã¢â€ â€™ 2MgO. Sodium and potassium react very vigorously with oxygen and must be stored in kerosene. Some metal oxides like aluminium are amphoteric Ã¢â‚¬â€ they react with both acids and bases. Gold and platinum do not react with oxygen.",
     chapterNum: 3, chapter: "Metals and Non-metals", section: "Reaction of Metals with Oxygen",
     keywords: ["metals oxygen", "metal oxide", "react oxygen", "magnesium oxide"]
   },
@@ -243,7 +243,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["conductivity", "free electrons"]
   },
 
-  // ─── CHAPTER 4: Carbon and its Compounds ──────────────────────────
+  // â”€â”€â”€ CHAPTER 4: Carbon and its Compounds â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How does soap clean dirt?",
     answer: "Soap cleans by forming structures called micelles. A soap molecule has a hydrophilic (water-loving) head and a hydrophobic (water-fearing) hydrocarbon tail. The hydrophobic tails attach to the oily dirt, while the hydrophilic heads face outward towards the water. This forms an emulsion, allowing the dirt to be rinsed away with water.",
@@ -276,7 +276,7 @@ export const QA_CACHE: QAEntry[] = [
   },
   {
     question: "What is a homologous series?",
-    answer: "A homologous series is a sequence of carbon compounds that have the same functional group and similar chemical properties. Successive members of the series differ by a -CHΓéé- unit and a mass of 14u. For example, the alkane series includes methane (CHΓéä), ethane (CΓééHΓéå), and propane (CΓéâHΓê╕).",
+    answer: "A homologous series is a sequence of carbon compounds that have the same functional group and similar chemical properties. Successive members of the series differ by a -CHÎ“Ã©Ã©- unit and a mass of 14u. For example, the alkane series includes methane (CHÎ“Ã©Ã¤), ethane (CÎ“Ã©Ã©HÎ“Ã©Ã¥), and propane (CÎ“Ã©Ã¢HÎ“Ãªâ••).",
     chapterNum: 4, chapter: "Carbon and its Compounds", section: "Homologous Series",
     keywords: ["homologous series", "functional group", "CH2 unit"]
   },
@@ -323,7 +323,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["catenation", "tetravalency", "covalent bonds", "carbon compounds"]
   },
 
-  // ─── CHAPTER 5: Life Processes ────────────────────────────────────
+  // â”€â”€â”€ CHAPTER 5: Life Processes â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How are the alveoli designed to maximize the exchange of gases?",
     answer: "Alveoli are balloon-like structures in the lungs that provide a massive surface area for gas exchange. Their walls are very thin, usually one cell thick, and are surrounded by an extensive network of blood capillaries. This thin membrane and rich blood supply facilitate rapid diffusion of oxygen into the blood and carbon dioxide out of it.",
@@ -403,7 +403,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["saliva", "salivary amylase", "starch", "digestion"]
   },
 
-  // ─── CHAPTER 6: Control and Coordination ──────────────────────────
+  // â”€â”€â”€ CHAPTER 6: Control and Coordination â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How do plants respond to stimuli if they lack a nervous system?",
     answer: "Plants respond to stimuli using chemical coordination through plant hormones (phytohormones) and cellular water pressure. They exhibit directional growth movements called tropisms (like phototropism toward light or geotropism toward gravity) and non-directional movements like the folding of mimosa leaves due to changes in turgor pressure.",
@@ -483,7 +483,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["iodized salt", "iodine", "thyroxine", "thyroid gland", "goiter"]
   },
 
-  // ─── CHAPTER 7: How do Organisms Reproduce? ───────────────────────
+  // â”€â”€â”€ CHAPTER 7: How do Organisms Reproduce? â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "Explain the process of fertilization in flowering plants.",
     answer: "After pollination, the pollen grain lands on the stigma and grows a pollen tube down the style to the ovary. Male germ cells travel through this tube to reach the ovule. Fertilization occurs when the male germ cell fuses with the female egg cell inside the ovule, forming a zygote that eventually develops into a seed.",
@@ -563,7 +563,7 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["DNA copying", "replication", "blueprint", "variation", "evolution"]
   },
 
-  // ─── CHAPTER 8: Heredity ──────────────────────────────────────────
+  // â”€â”€â”€ CHAPTER 8: Heredity â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How is the sex of a human child determined?",
     answer: "Sex determination in humans is strictly genetic. Females have a perfect pair of sex chromosomes (XX), while males have a mismatched pair (XY). All eggs contain an X chromosome. If a sperm carrying an X chromosome fertilizes the egg, the child will be female (XX). If a sperm carrying a Y chromosome fertilizes it, the child will be male (XY).",
@@ -637,250 +637,342 @@ export const QA_CACHE: QAEntry[] = [
     keywords: ["Mendel", "pea plants", "contrasting traits", "short life span", "pollination"]
   },
 
-  // ─── CHAPTER 10: Light: Reflection and Refraction ──────────────────
+  // â”€â”€â”€ CHAPTER 9: Light: Reflection and Refraction â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "How does a convex lens form images?",
-    answer: "For a convex lens: object beyond 2F â†’ real, inverted, diminished image (camera). Object at 2F â†’ real, inverted, same size. Object between F and 2F â†’ real, inverted, magnified (projector). Object between lens and F â†’ virtual, erect, magnified (magnifying glass). For a concave lens the image is always virtual, erect, and diminished.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Image Formation by Lenses",
+    answer: "For a convex lens: object beyond 2F Ã¢â€ â€™ real, inverted, diminished image (camera). Object at 2F Ã¢â€ â€™ real, inverted, same size. Object between F and 2F Ã¢â€ â€™ real, inverted, magnified (projector). Object between lens and F Ã¢â€ â€™ virtual, erect, magnified (magnifying glass). For a concave lens the image is always virtual, erect, and diminished.",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Image Formation by Lenses",
     keywords: ["image formation", "convex lens image", "lens image position", "real virtual image"]
   },
   {
     question: "What are the laws of reflection?",
     answer: "The two laws of reflection are: (1) The angle of incidence equals the angle of reflection, both measured from the normal at the point of incidence. (2) The incident ray, reflected ray, and normal all lie in the same plane. Regular reflection occurs on smooth surfaces; diffuse reflection on rough surfaces.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Reflection of Light",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Reflection of Light",
     keywords: ["laws of reflection", "reflection", "angle of incidence", "angle of reflection"]
   },
   {
     question: "What is a concave lens?",
     answer: "A concave lens (diverging lens) is thinner at the centre and diverges light rays. It always forms a virtual, erect, and diminished image regardless of object position. It is used to correct myopia (short-sightedness). A concave lens has negative power.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Lenses: Concave and Convex",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Lenses: Concave and Convex",
     keywords: ["concave lens", "diverging lens", "myopia", "short-sightedness"]
   },
   {
     question: "What is a concave mirror?",
     answer: "A concave mirror (converging mirror) has its reflecting surface curved inward. It can form real and inverted images and is used in torches, headlights, shaving mirrors, and solar furnaces. Key terms include the centre of curvature (C), principal focus (F), and pole (P). The radius of curvature R = 2f.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Spherical Mirrors",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Spherical Mirrors",
     keywords: ["concave mirror", "converging mirror", "spherical mirror"]
   },
   {
     question: "What is a convex lens?",
-    answer: "A convex lens (converging lens) is thicker at the centre and converges light rays to a focal point. It is used in magnifying glasses, cameras, the human eye, and microscopes. The lens formula is 1/v âˆ’ 1/u = 1/f. Power P = 1/f (dioptres). A convex lens has positive power.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Lenses: Concave and Convex",
+    answer: "A convex lens (converging lens) is thicker at the centre and converges light rays to a focal point. It is used in magnifying glasses, cameras, the human eye, and microscopes. The lens formula is 1/v Ã¢Ë†â€™ 1/u = 1/f. Power P = 1/f (dioptres). A convex lens has positive power.",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Lenses: Concave and Convex",
     keywords: ["convex lens", "converging lens", "lens formula", "magnifying glass"]
   },
   {
     question: "What is a convex mirror?",
     answer: "A convex mirror (diverging mirror) has its reflecting surface curved outward. It always forms a virtual, erect, and diminished image regardless of object position. It is used as a rear-view mirror in vehicles because it gives a wider field of view.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Spherical Mirrors",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Spherical Mirrors",
     keywords: ["convex mirror", "diverging mirror", "rear-view mirror"]
   },
   {
     question: "What is dispersion of light?",
     answer: "Dispersion is the splitting of white light into its component colors when it passes through a prism.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Optics",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Optics",
     keywords: ["dispersion", "spectrum"]
   },
   {
     question: "What is light?",
     answer: "Light is a form of energy that enables us to see objects. It travels in straight lines and exhibits properties like reflection and refraction.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Basics",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Basics",
     keywords: ["light", "energy"]
   },
   {
     question: "What is reflection of light?",
     answer: "Reflection is the bouncing back of light when it strikes a surface. It follows the laws of reflection.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Reflection",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Reflection",
     keywords: ["reflection", "bounce"]
   },
   {
     question: "What is refraction index?",
     answer: "Refractive index is the ratio of the speed of light in vacuum to its speed in a medium. It indicates how much light bends in a medium.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Refraction",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Refraction",
     keywords: ["refractive index", "light speed"]
   },
   {
     question: "What is refraction of light?",
-    answer: "Refraction is the bending of light when it passes from one medium to another of different optical density, because the speed of light changes. When light goes from rarer to denser medium it bends toward the normal; from denser to rarer it bends away. Laws of refraction: rays are coplanar, and Snell's Law: nâ‚ sin Î¸â‚ = nâ‚‚ sin Î¸â‚‚.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Refraction of Light",
+    answer: "Refraction is the bending of light when it passes from one medium to another of different optical density, because the speed of light changes. When light goes from rarer to denser medium it bends toward the normal; from denser to rarer it bends away. Laws of refraction: rays are coplanar, and Snell's Law: nÃ¢â€šÂ sin ÃŽÂ¸Ã¢â€šÂ = nÃ¢â€šâ€š sin ÃŽÂ¸Ã¢â€šâ€š.",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Refraction of Light",
     keywords: ["refraction", "bending of light", "medium", "snell's law"]
   },
   {
     question: "What is Snell's Law?",
-    answer: "Snell's Law states: nâ‚ sin i = nâ‚‚ sin r, where i is the angle of incidence and r is the angle of refraction. The refractive index n = c/v (speed of light in vacuum / speed in medium). Glass has refractive index ~1.5; water has ~1.33. This explains why objects in water appear shallower than they are.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Snell's Law and Refractive Index",
+    answer: "Snell's Law states: nÃ¢â€šÂ sin i = nÃ¢â€šâ€š sin r, where i is the angle of incidence and r is the angle of refraction. The refractive index n = c/v (speed of light in vacuum / speed in medium). Glass has refractive index ~1.5; water has ~1.33. This explains why objects in water appear shallower than they are.",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Snell's Law and Refractive Index",
     keywords: ["snell's law", "refractive index", "refraction formula", "n=c/v"]
   },
   {
     question: "What is the mirror formula?",
     answer: "The mirror formula relates object distance (u), image distance (v), and focal length (f): 1/v + 1/u = 1/f. All distances are measured from the pole of the mirror. Sign convention: distances in the direction of incident light are positive; opposite are negative. Magnification m = -v/u.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Mirror Formula and Magnification",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Mirror Formula and Magnification",
     keywords: ["mirror formula", "mirror equation", "focal length", "magnification"]
   },
   {
     question: "What is total internal reflection?",
     answer: "Total internal reflection occurs when light traveling from a denser to a rarer medium reflects completely back into the denser medium at angles greater than the critical angle.",
-    chapterNum: 10, chapter: "Light: Reflection and Refraction", section: "Refraction",
+    chapterNum: 9, chapter: "Light: Reflection and Refraction", section: "Refraction",
     keywords: ["TIR", "critical angle"]
   },
 
-  // ─── CHAPTER 11: The Human Eye and the Colourful World ─────────────
+  // â”€â”€â”€ CHAPTER 10: The Human Eye and the Colourful World â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "What is accommodation?",
     answer: "Accommodation is the ability of the eye lens to change its focal length to focus on near and distant objects.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Vision",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Vision",
     keywords: ["accommodation", "lens"]
   },
   {
     question: "What is dispersion of white light?",
     answer: "Dispersion is the splitting of white light into its component seven colors (VIBGYOR) when it passes through a transparent medium like a glass prism. This occurs because different colors of light bend through different angles relative to the incident ray. Red light bends the least, while violet light bends the most.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Refraction of Light Through a Prism",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Refraction of Light Through a Prism",
     keywords: ["dispersion", "white light", "prism", "spectrum", "VIBGYOR"]
   },
   {
     question: "What is human eye?",
     answer: "The human eye is a sense organ that allows us to see by detecting light and forming images on the retina.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Eye Structure",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Eye Structure",
     keywords: ["eye", "retina"]
   },
   {
     question: "What is hypermetropia and how is it corrected?",
     answer: "Hypermetropia, or far-sightedness, is a vision defect where a person can see distant objects clearly but struggles with near objects. It happens because the eyeball is too short or the lens has low converging power, causing images of near objects to form behind the retina. It is corrected using a convex (converging) lens.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Defects of Vision and Their Correction",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Defects of Vision and Their Correction",
     keywords: ["hypermetropia", "far-sightedness", "convex lens", "retina defect"]
   },
   {
     question: "What is hypermetropia?",
     answer: "Hypermetropia is a defect in which distant objects are seen clearly but nearby objects appear blurred. It is corrected using convex lenses.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Defects",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Defects",
     keywords: ["hypermetropia", "long sightedness"]
   },
   {
     question: "What is myopia and how is it corrected?",
     answer: "Myopia, or near-sightedness, is a defect where a person can see nearby objects clearly but cannot focus on distant objects. It occurs if the eyeball elongates or the lens is too curved, causing images to form in front of the retina. It is corrected by using a concave (diverging) lens of appropriate power.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Defects of Vision and Their Correction",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Defects of Vision and Their Correction",
     keywords: ["myopia", "near-sightedness", "concave lens", "retina defect"]
   },
   {
     question: "What is myopia?",
     answer: "Myopia is a defect of vision in which nearby objects are seen clearly but distant objects appear blurred. It is corrected using concave lenses.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Defects",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Defects",
     keywords: ["myopia", "short sightedness"]
   },
   {
     question: "What is the power of accommodation of the eye?",
     answer: "The power of accommodation is the ability of the eye lens to adjust its focal length to clearly focus on objects at varying distances. The ciliary muscles contract to thicken the lens for near objects and relax to thin the lens for distant objects. In young adults, the normal range is from 25 cm to infinity.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Power of Accommodation",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Power of Accommodation",
     keywords: ["power of accommodation", "eye lens", "focal length", "ciliary muscles"]
   },
   {
     question: "Why do stars twinkle but planets do not?",
     answer: "Stars twinkle because their light undergoes atmospheric refraction as it passes through layers of varying optical density in Earth's atmosphere. Because stars are effectively point sources of light, this shifting refraction causes their apparent brightness to fluctuate. Planets are much closer and act as extended sources of light, canceling out the twinkling effect.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Atmospheric Refraction",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Atmospheric Refraction",
     keywords: ["twinkling", "stars", "planets", "atmospheric refraction", "point source"]
   },
   {
     question: "Why does the sky appear blue?",
     answer: "The sky appears blue due to the scattering of sunlight by earth's atmosphere. The fine particles and gas molecules in the air are smaller than the wavelength of visible light. They scatter shorter wavelengths (blue light) much more effectively than longer wavelengths (red light). This scattered blue light reaches our eyes.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Scattering of Light",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Scattering of Light",
     keywords: ["blue sky", "scattering", "sunlight", "wavelength", "atmosphere"]
   },
   {
     question: "Why is the sky blue?",
     answer: "The sky appears blue due to scattering of shorter wavelengths of light by air molecules in the atmosphere. This is called Rayleigh scattering.",
-    chapterNum: 11, chapter: "The Human Eye and the Colourful World", section: "Scattering",
+    chapterNum: 10, chapter: "The Human Eye and the Colourful World", section: "Scattering",
     keywords: ["sky blue", "scattering"]
   },
 
-  // ─── CHAPTER 12: Electricity ───────────────────────────────────────
+  // â”€â”€â”€ CHAPTER 11: Electricity â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "Define 1 volt potential difference.",
     answer: "One volt is defined as the potential difference between two points in a current-carrying conductor when 1 Joule of work is done to move a charge of 1 Coulomb from one point to the other. Mathematically, 1 V = 1 J / 1 C.",
-    chapterNum: 12, chapter: "Electricity", section: "Electric Potential and Potential Difference",
+    chapterNum: 11, chapter: "Electricity", section: "Electric Potential and Potential Difference",
     keywords: ["1 volt", "potential difference", "Joule", "Coulomb", "work done"]
   },
   {
     question: "On what factors does the resistance of a conductor depend?",
-    answer: "The resistance of a conductor depends on four factors: (1) its length (resistance is directly proportional to length), (2) its cross-sectional area (inversely proportional to area), (3) the nature of its material (resistivity), and (4) its temperature. The formula is R = ╧ü(L/A).",
-    chapterNum: 12, chapter: "Electricity", section: "Factors on which the Resistance of a Conductor Depends",
+    answer: "The resistance of a conductor depends on four factors: (1) its length (resistance is directly proportional to length), (2) its cross-sectional area (inversely proportional to area), (3) the nature of its material (resistivity), and (4) its temperature. The formula is R = â•§Ã¼(L/A).",
+    chapterNum: 11, chapter: "Electricity", section: "Factors on which the Resistance of a Conductor Depends",
     keywords: ["resistance factors", "length", "area", "resistivity", "temperature"]
   },
   {
     question: "State Ohm's Law.",
     answer: "Ohm's Law states that the potential difference (V) across the ends of a given metallic wire in an electric circuit is directly proportional to the current (I) flowing through it, provided its temperature remains the same. The mathematical expression is V = IR, where R is the resistance of the conductor.",
-    chapterNum: 12, chapter: "Electricity", section: "Ohm's Law",
+    chapterNum: 11, chapter: "Electricity", section: "Ohm's Law",
     keywords: ["Ohm's Law", "potential difference", "current", "resistance", "V=IR"]
   },
   {
     question: "What is electric power and its SI unit?",
-    answer: "Electric power is the rate at which electrical energy is consumed or dissipated in an electric circuit. The formulas are P = VI, P = I┬▓R, and P = V┬▓/R. The SI unit of electric power is the Watt (W). 1 Watt is the power consumed by a device carrying 1 Ampere of current under a potential difference of 1 Volt.",
-    chapterNum: 12, chapter: "Electricity", section: "Electric Power",
+    answer: "Electric power is the rate at which electrical energy is consumed or dissipated in an electric circuit. The formulas are P = VI, P = Iâ”¬â–“R, and P = Vâ”¬â–“/R. The SI unit of electric power is the Watt (W). 1 Watt is the power consumed by a device carrying 1 Ampere of current under a potential difference of 1 Volt.",
+    chapterNum: 11, chapter: "Electricity", section: "Electric Power",
     keywords: ["electric power", "Watt", "P=VI", "rate of energy"]
   },
   {
     question: "What is Joule's Law of Heating?",
-    answer: "Joule's Law of Heating states that the heat produced in a resistor is directly proportional to the square of the current (I┬▓), proportional to the resistance (R), and proportional to the time (t) for which the current flows. The formula is H = I┬▓Rt. This principle is used in electric heaters, irons, and toasters.",
-    chapterNum: 12, chapter: "Electricity", section: "Heating Effect of Electric Current",
+    answer: "Joule's Law of Heating states that the heat produced in a resistor is directly proportional to the square of the current (Iâ”¬â–“), proportional to the resistance (R), and proportional to the time (t) for which the current flows. The formula is H = Iâ”¬â–“Rt. This principle is used in electric heaters, irons, and toasters.",
+    chapterNum: 11, chapter: "Electricity", section: "Heating Effect of Electric Current",
     keywords: ["Joule's Law", "heating effect", "H=I2Rt", "resistor"]
   },
   {
     question: "What is the equivalent resistance when resistors are connected in parallel?",
     answer: "In a parallel connection, the potential difference across all resistors is the same, but the total current splits among them. The reciprocal of the equivalent resistance (Rp) equals the sum of the reciprocals of individual resistances: 1/Rp = 1/R1 + 1/R2 + 1/R3 + ... The equivalent resistance is always less than the lowest individual resistance.",
-    chapterNum: 12, chapter: "Electricity", section: "Resistors in Parallel",
+    chapterNum: 11, chapter: "Electricity", section: "Resistors in Parallel",
     keywords: ["parallel connection", "equivalent resistance", "1/Rp", "voltage constant"]
   },
   {
     question: "What is the equivalent resistance when resistors are connected in series?",
     answer: "When resistors are connected in series, the same current flows through each resistor, and the total potential difference is the sum of the individual potential differences. The equivalent resistance (Rs) is simply the sum of their individual resistances: Rs = R1 + R2 + R3 + ... This total resistance is always greater than the highest individual resistance.",
-    chapterNum: 12, chapter: "Electricity", section: "Resistors in Series",
+    chapterNum: 11, chapter: "Electricity", section: "Resistors in Series",
     keywords: ["series connection", "equivalent resistance", "R1+R2", "current constant"]
   },
   {
     question: "Why are coils of electric toasters made of an alloy rather than a pure metal?",
     answer: "Coils of electric heating devices are made of alloys (like nichrome) because alloys generally have a much higher resistivity than their constituent pure metals. Furthermore, alloys do not oxidize (burn) readily at high temperatures, making them highly durable and ideal for heating elements.",
-    chapterNum: 12, chapter: "Electricity", section: "Heating Effect of Electric Current",
+    chapterNum: 11, chapter: "Electricity", section: "Heating Effect of Electric Current",
     keywords: ["alloy", "resistivity", "oxidize", "heating devices", "nichrome"]
   },
 
-  // ─── CHAPTER 13: Magnetic Effects of Electric Current ──────────────
+  // â”€â”€â”€ CHAPTER 12: Magnetic Effects of Electric Current â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
   {
     question: "State Fleming's Left-Hand Rule.",
     answer: "Fleming's Left-Hand Rule determines the direction of the force acting on a current-carrying conductor placed in a magnetic field. Stretch the thumb, forefinger, and middle finger of your left hand mutually perpendicular. If the forefinger points to the magnetic field and the middle finger to the current, the thumb will point in the direction of motion or force.",
-    chapterNum: 13, chapter: "Magnetic Effects of Electric Current", section: "Force on a Current-Carrying Conductor in a Magnetic Field",
+    chapterNum: 12, chapter: "Magnetic Effects of Electric Current", section: "Force on a Current-Carrying Conductor in a Magnetic Field",
     keywords: ["Fleming's Left-Hand Rule", "force", "magnetic field", "current", "motion"]
   },
   {
     question: "State the Right-Hand Thumb Rule.",
     answer: "The Right-Hand Thumb Rule is used to find the direction of the magnetic field associated with a current-carrying conductor. It states: Imagine holding a straight current-carrying conductor in your right hand such that the thumb points in the direction of the current. Then your wrapped fingers will show the direction of the magnetic field lines.",
-    chapterNum: 13, chapter: "Magnetic Effects of Electric Current", section: "Magnetic Field due to a Current-Carrying Conductor",
+    chapterNum: 12, chapter: "Magnetic Effects of Electric Current", section: "Magnetic Field due to a Current-Carrying Conductor",
     keywords: ["Right-Hand Thumb Rule", "magnetic field direction", "current", "conductor"]
   },
   {
     question: "What are the properties of magnetic field lines?",
     answer: "Magnetic field lines have several properties: (1) They emerge from the North pole and merge at the South pole outside the magnet. Inside, they go from South to North. (2) They form closed, continuous curves. (3) The closer the lines, the stronger the magnetic field. (4) No two field lines ever intersect each other.",
-    chapterNum: 13, chapter: "Magnetic Effects of Electric Current", section: "Magnetic Field and Field Lines",
+    chapterNum: 12, chapter: "Magnetic Effects of Electric Current", section: "Magnetic Field and Field Lines",
     keywords: ["magnetic field lines", "north pole", "south pole", "intersect", "closed curves"]
   },
   {
     question: "What causes an electric short circuit?",
     answer: "An electric short circuit occurs when the live wire (positive) and the neutral wire (negative) come into direct contact. This can happen if the insulation of the wires is damaged or if there is a fault in the appliance. It causes the resistance in the circuit to drop to almost zero, leading to an extremely high current flow and potential fire hazards.",
-    chapterNum: 13, chapter: "Magnetic Effects of Electric Current", section: "Domestic Electric Circuits",
+    chapterNum: 12, chapter: "Magnetic Effects of Electric Current", section: "Domestic Electric Circuits",
     keywords: ["short circuit", "live wire", "neutral wire", "low resistance", "fire hazard"]
   },
   {
     question: "What is a solenoid?",
     answer: "A solenoid is a coil of many circular turns of insulated copper wire wrapped closely in the shape of a cylinder. When an electric current is passed through it, it produces a magnetic field very similar to that of a bar magnet. The field inside the solenoid is uniform, represented by parallel straight lines.",
-    chapterNum: 13, chapter: "Magnetic Effects of Electric Current", section: "Magnetic Field due to a Current in a Solenoid",
+    chapterNum: 12, chapter: "Magnetic Effects of Electric Current", section: "Magnetic Field due to a Current in a Solenoid",
     keywords: ["solenoid", "coil", "magnetic field", "bar magnet", "uniform field"]
   },
   {
     question: "What is the function of an earth wire in domestic circuits?",
     answer: "The earth wire is a safety measure, especially for appliances with a metallic body (like a refrigerator or toaster). It provides a low-resistance conducting path for any leaked current to the earth. If there is a short circuit or leakage, the user is protected from severe electric shocks because the current flows into the ground.",
-    chapterNum: 13, chapter: "Magnetic Effects of Electric Current", section: "Domestic Electric Circuits",
+    chapterNum: 12, chapter: "Magnetic Effects of Electric Current", section: "Domestic Electric Circuits",
     keywords: ["earth wire", "safety", "leaked current", "electric shock", "grounding"]
+  },
+
+  // ─── CHAPTER 13: Our Environment ──────────────────────────────────
+  {
+    question: "What is an ecosystem?",
+    answer: "An ecosystem is a self-sustaining unit that consists of all the living organisms (biotic components) and the non-living environment (abiotic components) in a given area, interacting with each other. Examples include a pond, a forest, or a grassland. Energy flows through an ecosystem via food chains and food webs.",
+    chapterNum: 13, chapter: "Our Environment", section: "Ecosystem - What are its Components?",
+    keywords: ["ecosystem", "biotic", "abiotic", "living", "non-living"]
+  },
+  {
+    question: "What is a food chain?",
+    answer: "A food chain is a linear sequence that shows the transfer of food energy from one organism to the next. It always begins with a producer (green plant) and ends with a top predator or decomposer. Example: Grass → Grasshopper → Frog → Snake → Eagle. Energy is lost at each step, limiting the chain to 3–4 trophic levels.",
+    chapterNum: 13, chapter: "Our Environment", section: "Food Chains and Webs",
+    keywords: ["food chain", "producer", "consumer", "energy transfer", "trophic level"]
+  },
+  {
+    question: "What is a food web?",
+    answer: "A food web is an interconnected network of multiple food chains in an ecosystem. It shows the complex feeding relationships among organisms and is a more realistic representation of energy flow than a single food chain. Removing one organism from a food web can affect many others.",
+    chapterNum: 13, chapter: "Our Environment", section: "Food Chains and Webs",
+    keywords: ["food web", "interconnected", "feeding relationships", "ecosystem"]
+  },
+  {
+    question: "What are producers, consumers, and decomposers?",
+    answer: "Producers are autotrophs (like green plants and algae) that synthesize their own food through photosynthesis. Consumers are heterotrophs that feed on other organisms — herbivores eat plants (primary consumers), carnivores eat animals (secondary/tertiary consumers). Decomposers (bacteria and fungi) break down dead organic matter and return nutrients to the soil.",
+    chapterNum: 13, chapter: "Our Environment", section: "Ecosystem - What are its Components?",
+    keywords: ["producers", "consumers", "decomposers", "autotrophs", "heterotrophs"]
+  },
+  {
+    question: "What is the 10% energy law?",
+    answer: "The 10% law, proposed by Lindemann, states that only about 10% of the energy at one trophic level is transferred to the next trophic level. The remaining 90% is lost as heat during metabolic processes. This is why food chains are limited to 3–4 levels and why it is more energy-efficient for humans to eat plants than animals.",
+    chapterNum: 13, chapter: "Our Environment", section: "How do our Activities Affect the Environment?",
+    keywords: ["10% law", "energy transfer", "trophic level", "Lindemann", "energy loss"]
+  },
+  {
+    question: "What is biological magnification?",
+    answer: "Biological magnification (biomagnification) is the progressive increase in the concentration of harmful chemicals (like pesticides such as DDT) at each successive trophic level of a food chain. Since these substances are not biodegradable, they accumulate in the fatty tissues of organisms and reach their highest concentrations in top predators, including humans.",
+    chapterNum: 13, chapter: "Our Environment", section: "How do our Activities Affect the Environment?",
+    keywords: ["biological magnification", "biomagnification", "DDT", "pesticides", "trophic level"]
+  },
+  {
+    question: "What are biodegradable and non-biodegradable wastes?",
+    answer: "Biodegradable wastes are substances that can be broken down by microorganisms (decomposers) into simpler, harmless substances. Examples include vegetable peels, paper, and animal dung. Non-biodegradable wastes cannot be broken down by decomposers and persist in the environment for a very long time. Examples include plastics, DDT, and glass.",
+    chapterNum: 13, chapter: "Our Environment", section: "Eco-Friendly Activities",
+    keywords: ["biodegradable", "non-biodegradable", "microorganisms", "decomposers", "plastic"]
+  },
+  {
+    question: "What is the ozone layer and why is it important?",
+    answer: "The ozone layer is a region of Earth's stratosphere that contains a high concentration of ozone (O₃) molecules. It acts as a shield, absorbing the majority of the Sun's harmful ultraviolet (UV) radiation. Depletion of the ozone layer by chemicals like CFCs (chlorofluorocarbons) leads to increased UV exposure, causing skin cancer, cataracts, and harm to ecosystems.",
+    chapterNum: 13, chapter: "Our Environment", section: "Ozone Layer and How it is Getting Depleted",
+    keywords: ["ozone layer", "UV radiation", "stratosphere", "CFCs", "ozone depletion"]
+  },
+  {
+    question: "What causes ozone layer depletion?",
+    answer: "The ozone layer is depleted mainly by synthetic chemicals called chlorofluorocarbons (CFCs), used in refrigerants and aerosol sprays. In the stratosphere, UV radiation breaks down CFCs to release chlorine atoms, which catalytically destroy ozone molecules. Other culprits include halons and nitrous oxide.",
+    chapterNum: 13, chapter: "Our Environment", section: "Ozone Layer and How it is Getting Depleted",
+    keywords: ["ozone depletion", "CFCs", "chlorofluorocarbons", "chlorine", "aerosol"]
+  },
+  {
+    question: "What is environmental pollution?",
+    answer: "Environmental pollution is the contamination of air, water, or soil by harmful substances (pollutants) introduced by human activities. Types include air pollution (from vehicle emissions and industries), water pollution (from sewage and industrial effluents), and soil pollution (from pesticides and plastics).",
+    chapterNum: 13, chapter: "Our Environment", section: "How do our Activities Affect the Environment?",
+    keywords: ["environmental pollution", "air pollution", "water pollution", "soil pollution", "pollutants"]
+  },
+  {
+    question: "What is the role of decomposers in an ecosystem?",
+    answer: "Decomposers such as bacteria and fungi break down dead plants and animals into simpler inorganic substances like carbon dioxide, water, and minerals. This process recycles nutrients back into the soil, making them available again for producers. Without decomposers, the Earth would be littered with dead matter and nutrients would not be recycled.",
+    chapterNum: 13, chapter: "Our Environment", section: "Ecosystem - What are its Components?",
+    keywords: ["decomposers", "bacteria", "fungi", "nutrient cycling", "recycle"]
+  },
+  {
+    question: "What are trophic levels?",
+    answer: "A trophic level is the position an organism occupies in a food chain based on its source of nutrition. Producers (plants) form the first trophic level. Primary consumers (herbivores) form the second. Secondary consumers (carnivores that eat herbivores) form the third, and so on. Energy decreases as you move up the trophic levels.",
+    chapterNum: 13, chapter: "Our Environment", section: "Food Chains and Webs",
+    keywords: ["trophic levels", "food chain", "producers", "primary consumer", "energy"]
+  },
+  {
+    question: "How do human activities affect the environment?",
+    answer: "Human activities like industrialization, deforestation, use of chemical fertilizers and pesticides, and burning of fossil fuels pollute the environment. They cause air, water, and soil pollution, deplete the ozone layer, and contribute to global warming and loss of biodiversity. Waste accumulation of non-biodegradable substances is a major concern.",
+    chapterNum: 13, chapter: "Our Environment", section: "How do our Activities Affect the Environment?",
+    keywords: ["human activities", "environment", "pollution", "deforestation", "fossil fuels"]
+  },
+  {
+    question: "What is garbage management?",
+    answer: "Garbage management involves collecting, segregating, and disposing of waste in an eco-friendly manner. Biodegradable waste can be composted. Non-biodegradable waste should be recycled or disposed of safely to minimize environmental harm. The 3R principle — Reduce, Reuse, Recycle — helps manage waste effectively.",
+    chapterNum: 13, chapter: "Our Environment", section: "Eco-Friendly Activities",
+    keywords: ["garbage management", "waste disposal", "compost", "recycle", "3R"]
+  },
+  {
+    question: "Why should we use eco-friendly practices?",
+    answer: "Eco-friendly practices reduce pollution, conserve resources, and protect biodiversity. Using cloth bags instead of plastic, carpooling, using renewable energy, and composting food waste all help reduce our environmental footprint. These practices help ensure a sustainable environment for future generations.",
+    chapterNum: 13, chapter: "Our Environment", section: "Eco-Friendly Activities",
+    keywords: ["eco-friendly", "sustainable", "pollution reduction", "renewable energy", "biodiversity"]
   },
 ];
 
-// ── MATCHING ENGINE ──────────────────────────────────────────────────────────
+// â”€â”€ MATCHING ENGINE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
 
 function normalize(text: string): string {
   return text.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
@@ -909,3 +1001,4 @@ export function findCachedAnswer(query: string): QAEntry | null {
   }
   return bestScore >= 0.55 ? best : null;
 }
+
