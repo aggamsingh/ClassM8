@@ -107,7 +107,14 @@ export function retrieve(
   return results;
 }
 
-/** Compose a readable answer from the top retrieved chunk */
+/** Build a numbered context string from top-N results for the LLM prompt. */
+export function buildContext(results: RetrievalResult[]): string {
+  return results
+    .map((r, i) => `[Paragraph ${i + 1} — ${r.chunk.section}]\n${r.chunk.text}`)
+    .join('\n\n');
+}
+
+
 export function buildAnswer(query: string, results: RetrievalResult[]): string {
   if (results.length === 0) {
     if (CUSTOM_CHUNKS.length > 0) {

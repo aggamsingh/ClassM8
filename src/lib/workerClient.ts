@@ -10,7 +10,7 @@ export function initWorker(onProgress?: (progress: any) => void): Promise<void> 
     worker = new Worker(new URL('../workers/embedWorker.ts', import.meta.url), { type: 'module' });
     
     worker.onmessage = (event) => {
-      const { id, status, embedding, progress, error, text, chunk, fullText } = event.data;
+      const { id, status, embedding, progress, error } = event.data;
       
       if ((status === 'progress' || status === 'model_progress') && onProgress) {
         onProgress(progress);

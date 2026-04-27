@@ -10,19 +10,29 @@ import { setCustomChunks } from './lib/retrieval';
 import type { NcertChunk } from './lib/ncertData';
 
 const SUGGESTIONS = [
-  { text: "What is a redox reaction?", chapter: 1 },
-  { text: "What is the pH scale?", chapter: 2 },
-  { text: "Explain Snell's Law", chapter: 10 },
-  { text: "How are metals extracted?", chapter: 3 },
+  { text: "What is a redox reaction?",           chapter: "Ch. 1" },
+  { text: "What is the pH scale?",               chapter: "Ch. 2" },
+  { text: "Explain Snell's Law",                 chapter: "Ch. 10" },
+  { text: "How are metals extracted?",           chapter: "Ch. 3" },
+  { text: "What is a decomposition reaction?",   chapter: "Ch. 1" },
+  { text: "What is the reactivity series?",      chapter: "Ch. 3" },
+  { text: "What is a neutralisation reaction?",  chapter: "Ch. 2" },
+  { text: "How does a convex lens form images?", chapter: "Ch. 10" },
 ];
 
+interface DocumentData {
+  name: string;
+  chunks: NcertChunk[];
+}
+
 export default function App() {
-  const [activeChapter, setActiveChapter] = useState<number | null>(null);
-  const [inputValue, setInputValue]       = useState('');
-  const [isProcessing, setIsProcessing]   = useState(false);
+  const [documents, setDocuments] = useState<DocumentData[]>([]);
+  const [activeDocumentIndex, setActiveDocumentIndex] = useState<number | null>(null);
+  const [inputValue, setInputValue]     = useState('');
+  const [isProcessing, setIsProcessing] = useState(false);
   const [processStatus, setProcessStatus] = useState('');
-  const [uploadedDocumentName, setUploadedDocumentName] = useState<string | null>(null);
-  const { messages, isStreaming, sendMessage, clearChat } = useChat(activeChapter);
+
+  const { messages, isStreaming, sendMessage, clearChat } = useChat(activeDocumentIndex);
   const bottomRef = useRef<HTMLDivElement>(null);
 
   const handleUploadPdf = async (file: File) => {
@@ -41,25 +51,28 @@ export default function App() {
         }
       });
 
-      const ncertChunks: NcertChunk[] = [];
-      
+      const documentChunks: NcertChunk[] = [];
       for (let i = 0; i < chunks.length; i++) {
         setProcessStatus(`Analyzing Content... ${Math.round((i / chunks.length) * 100)}%`);
-        const chunkStr = chunks[i];
-        const embedding = await getEmbedding(chunkStr);
-        ncertChunks.push({
-          id: `custom-${i}`,
+        const embedding = await getEmbedding(chunks[i]);
+        documentChunks.push({
+          id: `custom-${Date.now()}-${i}`,
           chapter: file.name.replace('.pdf', ''),
           chapterNum: 99,
           section: `Part ${i + 1}`,
-          text: chunkStr,
+          text: chunks[i],
           embedding,
         });
       }
 
-      setCustomChunks(ncertChunks);
-      setActiveChapter(99);
-      setUploadedDocumentName(file.name.replace('.pdf', ''));
+      const docName = file.name.replace('.pdf', '');
+      setDocuments(prev => {
+        const next = [...prev, { name: docName, chunks: documentChunks }];
+        const newIndex = next.length - 1;
+        setActiveDocumentIndex(newIndex);
+        setCustomChunks(documentChunks);
+        return next;
+      });
       clearChat();
     } catch (e: any) {
       console.error(e);
@@ -70,29 +83,33 @@ export default function App() {
     }
   };
 
+  const handleSelectDocument = (index: number | null) => {
+    setActiveDocumentIndex(index);
+    if (index !== null && documents[index]) {
+      setCustomChunks(documents[index].chunks);
+    } else {
+      setCustomChunks([]);
+    }
+    clearChat();
+  };
+
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
   const showWelcome = messages.length === 0;
-
-  const visibleSuggestions = activeChapter
-    ? SUGGESTIONS.filter(s => s.chapter === activeChapter)
-    : SUGGESTIONS;
+  const activeDocumentName = activeDocumentIndex !== null && documents[activeDocumentIndex]
+    ? documents[activeDocumentIndex].name
+    : null;
 
   return (
     <div className="flex h-screen overflow-hidden bg-paper bg-grid-pattern">
       <Sidebar
-        activeChapter={activeChapter}
-        onSelectChapter={setActiveChapter}
-        onClearChat={() => {
-          clearChat();
-          setActiveChapter(null);
-          setCustomChunks([]);
-          setUploadedDocumentName(null);
-        }}
+        documents={documents.map(d => d.name)}
+        activeDocumentIndex={activeDocumentIndex}
+        onSelectDocument={handleSelectDocument}
+        onClearChat={clearChat}
         onUploadPdf={handleUploadPdf}
-        uploadedDocumentName={uploadedDocumentName}
       />
 
       <main className="flex-1 flex flex-col h-screen overflow-hidden relative">
@@ -104,18 +121,19 @@ export default function App() {
                   ClassM8
                 </h1>
                 <p className="text-xl text-graphite font-serif italic max-w-2xl leading-relaxed mb-12">
-                  An offline retrieval engine for the CBSE Class 10 Science syllabus. Ask a question, and it will cite the exact passage from your NCERT textbook.
+                  An offline AI tutor for CBSE Class 10 Science. Ask any NCERT question instantly, or upload your own PDF for custom Q&amp;A.
                 </p>
 
                 <div className="space-y-4">
-                  <p className="text-xs uppercase tracking-widest font-bold text-ash">Sample Inquiries</p>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {visibleSuggestions.map((s, i) => (
+                  <p className="text-xs uppercase tracking-widest font-bold text-ash mb-4">Sample Inquiries</p>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    {SUGGESTIONS.map((s, i) => (
                       <button
                         key={i}
                         onClick={() => sendMessage(s.text)}
                         className="text-left px-5 py-4 border border-slate-200 bg-white rounded shadow-sm text-ink font-medium hover:border-ink hover:shadow-md transition-all group"
                       >
+                        <span className="text-[10px] uppercase tracking-widest text-ash font-bold block mb-1">{s.chapter}</span>
                         <span className="text-ash group-hover:text-ink mr-2 transition-colors">→</span>
                         {s.text}
                       </button>
@@ -139,9 +157,9 @@ export default function App() {
           disabled={isStreaming || isProcessing}
           value={inputValue}
           onChange={setInputValue}
-          uploadedDocumentName={uploadedDocumentName}
+          activeDocumentName={activeDocumentName}
         />
-        
+
         {isProcessing && (
           <div className="absolute inset-0 bg-white/80 backdrop-blur-sm flex items-center justify-center z-50">
             <div className="bg-paper border border-slate-200 p-8 rounded-lg shadow-xl max-w-sm w-full text-center">
